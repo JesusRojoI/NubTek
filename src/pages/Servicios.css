@@ -1,0 +1,120 @@
+.page-hero {
+  padding: calc(var(--header-height) + 4rem) 0 4rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  text-align: center;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--gray-500);
+  font-size: 0.9rem;
+}
+
+.breadcrumb a {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.page-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-md);
+}
+
+.page-subtitle {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.page-description {
+  font-size: 1.1rem;
+  color: var(--gray-500);
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl);
+  line-height: 1.8;
+}
+
+.page-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.services-detailed {
+  padding: var(--spacing-3xl) 0;
+}
+
+.service-link-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.service-card-detailed {
+  background: var(--white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--gray-100);
+  transition: all var(--transition-normal);
+  height: 100%;
+  text-align: center;
+}
+
+.service-card-detailed:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-color);
+}
+
+.service-icon-large {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto var(--spacing-lg);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.1));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--primary-color);
+  transition: all var(--transition-normal);
+}
+
+.service-card-detailed:hover .service-icon-large {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.service-card-detailed h3 {
+  font-size: 1.3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.service-card-detailed p {
+  color: var(--gray-500);
+  margin-bottom: var(--spacing-lg);
+}
+
+.learn-more {
+  color: var(--primary-color);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap var(--transition-fast);
+}
+
+.service-card-detailed:hover .learn-more {
+  gap: 0.8rem;
+}
