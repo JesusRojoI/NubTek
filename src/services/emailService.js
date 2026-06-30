@@ -1,5 +1,5 @@
 // ============================================
-// FETCHBRAND - Servicio de Correos Bilingüe
+// NUBTEK - Servicio de Correos Bilingüe
 // ============================================
 
 function getLanguage() {
@@ -14,8 +14,8 @@ const templates = {
   // ✅ Confirmación para el CLIENTE (formulario de contacto)
   contactConfirmation: (data) => ({
     subject: t(
-      '✅ Hemos recibido tu mensaje - FetchBrand',
-      '✅ We received your message - FetchBrand'
+      '✅ Hemos recibido tu mensaje - NubTek',
+      '✅ We received your message - NubTek'
     ),
     html: `
       <div style="font-family:Arial,sans-serif;max-width:550px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
@@ -39,8 +39,8 @@ const templates = {
   // ✅ Confirmación para el CLIENTE (formulario de cotización)
   cotizacionConfirmation: (data) => ({
     subject: t(
-      '✅ Hemos recibido tu cotización - FetchBrand',
-      '✅ We received your quote request - FetchBrand'
+      '✅ Hemos recibido tu cotización - NubTek',
+      '✅ We received your quote request - NubTek'
     ),
     html: `
       <div style="font-family:Arial,sans-serif;max-width:550px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
@@ -97,7 +97,7 @@ const templates = {
       <div style="font-family:Arial,sans-serif;max-width:550px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
         <div style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:25px;text-align:center;border-radius:16px 16px 0 0;">
           <h1 style="margin:0;">${t('📋 Nueva Cotización', '📋 New Quote')}</h1>
-          <p style="margin:5px 0 0;opacity:0.9;">FetchBrand - ${t('Servicio Personalizado', 'Custom Service')}</p>
+          <p style="margin:5px 0 0;opacity:0.9;">NubTek - ${t('Servicio Personalizado', 'Custom Service')}</p>
         </div>
         <div style="padding:25px;">
           <table style="width:100%;border-collapse:collapse;">
@@ -116,7 +116,7 @@ const templates = {
           </div>` : ''}
         </div>
         <div style="text-align:center;padding:15px;color:#94a3b8;font-size:12px;border-top:1px solid #e2e8f0;">
-          <p>${t('Formulario de cotización - FetchBrand', 'Quote Form - FetchBrand')}</p>
+          <p>${t('Formulario de cotización - NubTek', 'Quote Form - NubTek')}</p>
           <p>${t('Idioma del usuario: Español', 'User language: English')}</p>
         </div>
       </div>`
@@ -125,14 +125,14 @@ const templates = {
   // 🛒 Confirmación de COMPRA para el CLIENTE
   purchaseConfirmation: (data) => ({
     subject: t(
-      '🛒 ¡Compra confirmada! - FetchBrand',
-      '🛒 Purchase Confirmed! - FetchBrand'
+      '🛒 ¡Compra confirmada! - NubTek',
+      '🛒 Purchase Confirmed! - NubTek'
     ),
     html: `
       <div style="font-family:Arial,sans-serif;max-width:550px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
         <div style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:30px 25px;text-align:center;border-radius:16px 16px 0 0;">
           <h1 style="margin:0;">${t('🎉 ¡Compra Confirmada!', '🎉 Purchase Confirmed!')}</h1>
-          <p style="margin:5px 0 0;opacity:0.9;">${t('Gracias por confiar en FetchBrand', 'Thank you for trusting FetchBrand')}</p>
+          <p style="margin:5px 0 0;opacity:0.9;">${t('Gracias por confiar en NubTek', 'Thank you for trusting NubTek')}</p>
         </div>
         <div style="padding:25px;">
           <h2>${t('¡Hola', 'Hello')} ${data.name}!</h2>
@@ -174,7 +174,7 @@ const templates = {
           )}</p>
         </div>
         <div style="text-align:center;padding:15px;color:#94a3b8;font-size:12px;border-top:1px solid #e2e8f0;">
-          <p>© ${new Date().getFullYear()} FetchBrand - ${t('Todos los derechos reservados', 'All rights reserved')}</p>
+          <p>© ${new Date().getFullYear()} NubTek - ${t('Todos los derechos reservados', 'All rights reserved')}</p>
         </div>
       </div>`
   }),

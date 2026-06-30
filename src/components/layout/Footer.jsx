@@ -21,7 +21,7 @@ const Footer = () => {
       }}>
         <div>
           <h3 style={{ color: 'white', fontSize: '1.5rem', marginBottom: '15px' }}>
-            Fetch<span style={{ color: '#2563eb' }}>Brand</span>
+            Nub<span style={{ color: '#2563eb' }}>Tek</span>
           </h3>
           <p style={{ color: '#94a3b8', lineHeight: '1.8' }}>
             {t('footer.about')}

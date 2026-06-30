@@ -14,7 +14,7 @@ exports.handler = async (event) => {
     
     // Usar variables de entorno de Netlify (sin VITE_)
     const apiKey = process.env.RESEND_API_KEY;
-    const from = process.env.EMAIL_FROM || 'FetchBrand <onboarding@resend.dev>';
+    const from = process.env.EMAIL_FROM || 'NubTek <onboarding@resend.dev>';
 
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',

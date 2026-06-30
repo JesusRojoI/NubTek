@@ -50,7 +50,7 @@ const Header = () => {
           fontWeight: '700',
           color: '#0f172a'
         }}>
-          Fetch<span style={{ color: '#2563eb' }}>Brand</span>
+          Nub<span style={{ color: '#2563eb' }}>Tek</span>
         </Link>
 
         <nav style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>

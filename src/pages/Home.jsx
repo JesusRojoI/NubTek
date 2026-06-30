@@ -256,7 +256,7 @@ const Home = () => {
                 }}>
                   <FiShield size={50} />
                 </div>
-                <div style={{ fontSize: '1.2rem', fontWeight: '700' }}>FetchBrand</div>
+                <div style={{ fontSize: '1.2rem', fontWeight: '700' }}>NubTek</div>
                 <div style={{ fontSize: '0.9rem', opacity: 0.9 }}>{t('home.hero.subtitle')}</div>
               </div>
             </div>
