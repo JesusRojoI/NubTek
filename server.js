@@ -3,6 +3,7 @@ import cors from 'cors';
 import { Resend } from 'resend';
 import { config } from 'dotenv';
 import https from 'https';
+import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
@@ -12,7 +13,7 @@ const __dirname = dirname(__filename);
 config({ path: resolve(__dirname, '.env') });
 
 const app = express();
-const PORT = 3003;
+const PORT = process.env.PORT || 3003;
 
 app.use(cors());
 app.use(express.json());
@@ -65,7 +66,7 @@ async function getEtominToken() {
 }
 
 // ============================================
-// Petición a Etomin (CORREGIDA: async)
+// Petición a Etomin
 // ============================================
 async function etominRequest(path, body) {
   const token = await getEtominToken();
@@ -103,8 +104,10 @@ async function etominRequest(path, body) {
 }
 
 // ============================================
-// RUTA: Enviar correo
+// RUTAS API
 // ============================================
+
+// Enviar correo
 app.post('/api/send-email', async (req, res) => {
   try {
     const { to, subject, html } = req.body;
@@ -123,9 +126,7 @@ app.post('/api/send-email', async (req, res) => {
   }
 });
 
-// ============================================
-// RUTA: Procesar pago con Etomin
-// ============================================
+// Procesar pago
 app.post('/api/process-payment', async (req, res) => {
   try {
     const { amount, cardNumber, cardName, cardExpiry, cardCvc, email, name, lastName, phone, address, city, zip } = req.body;
@@ -174,13 +175,29 @@ app.post('/api/process-payment', async (req, res) => {
   }
 });
 
-// ============================================
 // Health check
-// ============================================
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// ============================================
+// SERVIR ARCHIVOS ESTÁTICOS (PRODUCCIÓN)
+// ============================================
+const distPath = path.join(__dirname, 'dist');
+
+app.use(express.static(distPath));
+
+// Cualquier ruta que no sea API, servir index.html
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ error: 'Ruta API no encontrada' });
+  }
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
+// ============================================
+// INICIAR SERVIDOR
+// ============================================
 app.listen(PORT, () => {
   console.log('🚀 Servidor: http://localhost:' + PORT);
   console.log('📧 Correos: http://localhost:' + PORT + '/api/send-email');

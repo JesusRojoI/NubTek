@@ -88,12 +88,16 @@ const Footer = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span style={{ color: '#64748b', fontSize: '0.8rem' }}>{t('footer.accept')}</span>
           
-          <svg width="50" height="16" viewBox="0 0 1000 324" fill="none" style={{ opacity: 0.85 }}>
-            <path d="M360.6 319.3L418.2 5.4H510.2L452.6 319.3H360.6Z" fill="white"/>
-            <path d="M755.2 14.9C733.6 6.3 699.4 0 660.6 0C553.8 0 478.6 49.8 477.2 121C475.8 173.6 531.4 203 572.8 218.8C615.6 235 630 245.4 629.6 259.6C628.8 281.8 598.2 292 569.4 292C529.4 292 508.2 286.8 475.4 273.6L462 268L447.8 316.8C471.2 326.6 514.4 335.2 559.2 336C672.6 336 746 287.2 747.4 211.6C748.8 164.8 714.6 143 705.4 136.4C696.8 130.2 691.2 127 691.2 127L755.2 14.9ZM822.6 5.4H743.4C710.8 5.4 686.4 14.6 672 47.6L577.8 319.3H675.6L695.2 265.8H813.6L836.4 319.3H922.2L822.6 5.4ZM716.4 192.6L772.8 40.2L811.2 192.6H716.4Z" fill="white"/>
-            <path d="M45.4 5.4L0 319.3H92.8L130.6 5.4H45.4Z" fill="white"/>
-            <path d="M265.4 5.4L177.8 319.3H270.6L358.2 5.4H265.4Z" fill="white"/>
-          </svg>
+          <img 
+  src="/visa_logo.svg" 
+  alt="VISA" 
+  style={{
+    height: '32px',
+    width: 'auto',
+    filter: 'brightness(0) invert(1)',
+    opacity: 0.85
+  }}
+/>
 
           <svg width="35" height="22" viewBox="0 0 39 24" fill="none" style={{ opacity: 0.8 }}>
             <circle cx="14.5" cy="12" r="11.5" fill="white" fillOpacity="0.9"/>
