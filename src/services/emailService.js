@@ -256,19 +256,13 @@ export async function sendEmail({ to, template, data }) {
 // ============================================
 
 export async function sendContactEmails(data) {
-  const adminEmail = 'jaknet.software.dev@gmail.com';
-  await sendEmail({ to: adminEmail, template: 'adminNotification', data });
   await sendEmail({ to: data.email, template: 'contactConfirmation', data });
 }
 
 export async function sendCotizacionEmails(data) {
-  const adminEmail = 'jaknet.software.dev@gmail.com';
-  await sendEmail({ to: adminEmail, template: 'cotizacionNotification', data });
   await sendEmail({ to: data.email, template: 'cotizacionConfirmation', data: { name: data.name } });
 }
 
 export async function sendPurchaseEmails(data) {
-  const adminEmail = 'jaknet.software.dev@gmail.com';
-  await sendEmail({ to: adminEmail, template: 'purchaseAdminNotification', data });
   await sendEmail({ to: data.email, template: 'purchaseConfirmation', data });
 }
