@@ -148,6 +148,7 @@
     "plan_tag": "PLAN"
   },
   "checkout": {
+      "secure_payment": "Pagos seguros con",
     "title": "Finalizar compra",
     "billing": "Detalles de facturación",
     "payment": "Datos de pago",

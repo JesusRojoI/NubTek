@@ -157,7 +157,7 @@ const Checkout = () => {
               <h3 style={{ margin: '30px 0 20px 0', color: '#0f172a', fontSize: '1.4rem', paddingBottom: '15px', borderBottom: '2px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <span><FiCreditCard style={{ marginRight: '10px' }} />{t('checkout.payment')}</span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#f0fdf4', padding: '8px 14px', borderRadius: '10px', border: '1px solid #bbf7d0' }}>
-                  <span style={{ fontSize: '0.75rem', color: '#166534', fontWeight: '600' }}>Pagos seguros con</span>
+                  <span style={{ fontSize: '0.75rem', color: '#166534', fontWeight: '600' }}>{t('checkout.secure_payment')}</span>
                   <img src="/etomin_logo.jpeg" alt="Etomin" style={{ height: '22px', width: 'auto' }} />
                 </div>
               </h3>

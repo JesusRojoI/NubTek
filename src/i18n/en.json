@@ -154,6 +154,7 @@
     "plan_tag": "PLAN"
   },
   "checkout": {
+      "secure_payment": "Secure payment with",
     "title": "Checkout",
     "billing": "Billing Details",
     "payment": "Payment Details",
