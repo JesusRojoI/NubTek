@@ -158,7 +158,7 @@ app.post('/api/process-payment', async (req, res) => {
         expirationYear: expYear,
         expirationMonth: expMonth
       },
-      redirectUrl: 'http://localhost:5173/compra-exitosa'
+       redirectUrl: (process.env.APP_URL || 'http://localhost:3003') + '/compra-exitosa'
     });
 
     console.log('📋 Resultado:', JSON.stringify(result));

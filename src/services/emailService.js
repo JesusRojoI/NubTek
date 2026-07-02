@@ -226,7 +226,7 @@ export async function sendEmail({ to, template, data }) {
   try {
     const templateData = templates[template](data);
 
-    const response = await fetch('http://localhost:3001/api/send-email', {
+    const response = await fetch('http://localhost:3003/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
