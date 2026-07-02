@@ -109,7 +109,7 @@ app.post('/api/send-email', async (req, res) => {
   try {
     const { to, subject, html } = req.body;
     const { data, error } = await resend.emails.send({
-      from: process.env.EMAIL_FROM || 'FetchBrand <onboarding@resend.dev>',
+      from: process.env.EMAIL_FROM || 'NubTek <onboarding@resend.dev>',
       to: Array.isArray(to) ? to : [to],
       subject,
       html
@@ -140,7 +140,7 @@ app.post('/api/process-payment', async (req, res) => {
       reference: reference,
       customerInformation: {
         firstName: name || 'Cliente',
-        lastName: lastName || 'FetchBrand',
+        lastName: lastName || 'NubTek',
         email: email || 'cliente@test.com',
         phone1: phone || '5544332211',
         city: city || 'Ciudad de Mexico',

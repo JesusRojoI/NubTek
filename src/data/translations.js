@@ -19,13 +19,13 @@ export const translations = {
       },
       services: {
         title: 'Un solo lugar para todo tu soporte.',
-        description: 'Desde la gestión administrativa hasta la atención al cliente, FetchBrand ofrece soluciones virtuales precisas y confiables que optimizan tu tiempo y tu operación diaria.',
+        description: 'Desde la gestión administrativa hasta la atención al cliente, NubTek ofrece soluciones virtuales precisas y confiables que optimizan tu tiempo y tu operación diaria.',
         requestService: 'Solicitar servicio',
         viewPlans: 'Ver todos los planes'
       },
       whyChooseUs: {
         title: 'Hacemos Que Tu Día Sea Más Eficiente.',
-        description: 'En FetchBrand impulsamos tu productividad con soluciones digitales inteligentes. Nuestra misión es optimizar tus procesos, liberar tu tiempo y elevar la calidad de tu comunicación con precisión y enfoque humano.',
+        description: 'En NubTek impulsamos tu productividad con soluciones digitales inteligentes. Nuestra misión es optimizar tus procesos, liberar tu tiempo y elevar la calidad de tu comunicación con precisión y enfoque humano.',
         cta: 'Contactar ahora',
         features: [
           {
@@ -55,7 +55,7 @@ export const translations = {
     services: {
       title: 'Servicios',
       subtitle: 'Un solo lugar para todas tus soluciones.',
-      description: 'En FetchBrand centralizamos todo lo que tu empresa necesita: asistencia virtual, gestión digital, atención al cliente y soporte de contenido. Un servicio integral diseñado para simplificar procesos y maximizar resultados.',
+      description: 'En NubTek centralizamos todo lo que tu empresa necesita: asistencia virtual, gestión digital, atención al cliente y soporte de contenido. Un servicio integral diseñado para simplificar procesos y maximizar resultados.',
       categories: [
         'Gestión Administrativa',
         'Atención al Cliente',
@@ -72,7 +72,7 @@ export const translations = {
     about_page: {
       title: 'Nosotros',
       subtitle: 'Soporte Inteligente y Soluciones Flexibles para Tu Negocio.',
-      description: 'En FetchBrand impulsamos la eficiencia de empresas y profesionales con servicios digitales personalizados.'
+      description: 'En NubTek impulsamos la eficiencia de empresas y profesionales con servicios digitales personalizados.'
     },
     contact: {
       title: 'Contacto',
@@ -105,7 +105,7 @@ export const translations = {
     },
     footer: {
       about: 'Sobre Nosotros',
-      aboutText: 'En FetchBrand ofrecemos soluciones digitales inteligentes para optimizar la gestión, comunicación y presencia de tu negocio. Creemos en la tecnología con propósito: eficiente, humana y diseñada para crecer contigo.',
+      aboutText: 'En NubTek ofrecemos soluciones digitales inteligentes para optimizar la gestión, comunicación y presencia de tu negocio. Creemos en la tecnología con propósito: eficiente, humana y diseñada para crecer contigo.',
       copyright: '© 2025 Fetch Brand. Todos los derechos reservados.',
       links: {
         terms: 'Términos y Condiciones',
@@ -136,13 +136,13 @@ export const translations = {
       },
       services: {
         title: 'One place for all your support.',
-        description: 'From administrative management to customer service, FetchBrand offers precise and reliable virtual solutions that optimize your time and daily operations.',
+        description: 'From administrative management to customer service, NubTek offers precise and reliable virtual solutions that optimize your time and daily operations.',
         requestService: 'Request Service',
         viewPlans: 'View All Plans'
       },
       whyChooseUs: {
         title: 'We Make Your Day More Efficient.',
-        description: 'At FetchBrand, we boost your productivity with intelligent digital solutions. Our mission is to optimize your processes, free up your time, and elevate the quality of your communication with precision and a human touch.',
+        description: 'At NubTek, we boost your productivity with intelligent digital solutions. Our mission is to optimize your processes, free up your time, and elevate the quality of your communication with precision and a human touch.',
         cta: 'Contact Now',
         features: [
           {
@@ -172,7 +172,7 @@ export const translations = {
     services: {
       title: 'Services',
       subtitle: 'One place for all your solutions.',
-      description: 'At FetchBrand, we centralize everything your business needs: virtual assistance, digital management, customer service, and content support. A comprehensive service designed to simplify processes and maximize results.',
+      description: 'At NubTek, we centralize everything your business needs: virtual assistance, digital management, customer service, and content support. A comprehensive service designed to simplify processes and maximize results.',
       categories: [
         'Administrative Management',
         'Customer Service',
@@ -189,7 +189,7 @@ export const translations = {
     about_page: {
       title: 'About Us',
       subtitle: 'Intelligent Support and Flexible Solutions for Your Business.',
-      description: 'At FetchBrand, we boost the efficiency of businesses and professionals with customized digital services.'
+      description: 'At NubTek, we boost the efficiency of businesses and professionals with customized digital services.'
     },
     contact: {
       title: 'Contact',
@@ -222,8 +222,8 @@ export const translations = {
     },
     footer: {
       about: 'About Us',
-      aboutText: 'At FetchBrand, we offer intelligent digital solutions to optimize the management, communication, and presence of your business. We believe in technology with purpose: efficient, human, and designed to grow with you.',
-      copyright: '© 2025 Fetch Brand. All rights reserved.',
+      aboutText: 'At NubTek, we offer intelligent digital solutions to optimize the management, communication, and presence of your business. We believe in technology with purpose: efficient, human, and designed to grow with you.',
+      copyright: '© 2025 NubTek. All rights reserved.',
       links: {
         terms: 'Terms & Conditions',
         privacy: 'Privacy Policy',
