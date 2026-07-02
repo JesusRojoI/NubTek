@@ -12,7 +12,7 @@ const __dirname = dirname(__filename);
 config({ path: resolve(__dirname, '.env') });
 
 const app = express();
-const PORT = 3001;
+const PORT = 3003;
 
 app.use(cors());
 app.use(express.json());
