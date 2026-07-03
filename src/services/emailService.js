@@ -10,6 +10,12 @@ function t(es, en) {
   return getLanguage() === 'en' ? en : es;
 }
 
+// Email del administrador
+const ADMIN_EMAIL = 'soluciones@nubtek.com.mx';
+
+// URL de la API (local o producción)
+const API_URL = import.meta.env.PROD ? '' : 'http://localhost:3003';
+
 const templates = {
   // ✅ Confirmación para el CLIENTE (formulario de contacto)
   contactConfirmation: (data) => ({
@@ -226,7 +232,7 @@ export async function sendEmail({ to, template, data }) {
   try {
     const templateData = templates[template](data);
 
-    const response = await fetch('/api/send-email', {
+    const response = await fetch(`${API_URL}/api/send-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -243,8 +249,10 @@ export async function sendEmail({ to, template, data }) {
     }
 
     const result = await response.json();
-    console.log('✅ Correo enviado:', result);
-    return { success: true, data: result };
+if (result.receipt) {
+  console.log('✅ CORREO ENVIADO - Recibo:', result.receipt);
+}
+return { success: true, data: result };
   } catch (error) {
     console.error('❌ Error:', error);
     return { success: false, error: error.message };
@@ -257,12 +265,15 @@ export async function sendEmail({ to, template, data }) {
 
 export async function sendContactEmails(data) {
   await sendEmail({ to: data.email, template: 'contactConfirmation', data });
+  await sendEmail({ to: ADMIN_EMAIL, template: 'adminNotification', data });
 }
 
 export async function sendCotizacionEmails(data) {
   await sendEmail({ to: data.email, template: 'cotizacionConfirmation', data: { name: data.name } });
+  await sendEmail({ to: ADMIN_EMAIL, template: 'cotizacionNotification', data });
 }
 
 export async function sendPurchaseEmails(data) {
   await sendEmail({ to: data.email, template: 'purchaseConfirmation', data });
+  await sendEmail({ to: ADMIN_EMAIL, template: 'purchaseAdminNotification', data });
 }

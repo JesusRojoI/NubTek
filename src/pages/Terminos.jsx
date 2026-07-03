@@ -7,7 +7,7 @@ const Terminos = () => {
 
   return (
     <>
-      <Helmet><title>{t('footer.terms')} - FetchBrand</title></Helmet>
+      <Helmet><title>{t('footer.terms')} - NubTek</title></Helmet>
 
       <section style={{
         padding: '140px 20px 80px', textAlign: 'center',
@@ -49,24 +49,50 @@ const Terminos = () => {
               <li>{t('legal.service_5')}</li>
               <li>{t('legal.service_6')}</li>
             </ul>
+            <p>{t('legal.services_footer')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>3. {t('legal.usage')}</h3>
             <p>{t('legal.usage_text')}</p>
+            <p>{t('legal.usage_text2')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>4. {t('legal.registration')}</h3>
             <p>{t('legal.registration_text')}</p>
+            <ul>
+              <li>{t('legal.registration_1')}</li>
+              <li>{t('legal.registration_2')}</li>
+              <li>{t('legal.registration_3')}</li>
+              <li>{t('legal.registration_4')}</li>
+            </ul>
+            <p>{t('legal.registration_footer')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>5.- {t('legal.payment')}</h3>
-            <p>{t('legal.payment_text')}</p>
+            <ul>
+              <li>{t('legal.payment_1')}</li>
+              <li>{t('legal.payment_2')}</li>
+              <li>{t('legal.payment_3')}</li>
+              <li>{t('legal.payment_4')}</li>
+              <li>{t('legal.payment_5')}</li>
+            </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>6. {t('legal.cancellation')}</h3>
-            <p>{t('legal.cancellation_text')}</p>
+            <ul>
+              <li>{t('legal.cancellation_1')}</li>
+              <li>{t('legal.cancellation_2')}</li>
+              <li>{t('legal.cancellation_3')}</li>
+              <li>{t('legal.cancellation_4')}</li>
+            </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>7. {t('legal.responsibility')}</h3>
-            <p>{t('legal.responsibility_text')}</p>
+            <ul>
+              <li>{t('legal.responsibility_1')}</li>
+              <li>{t('legal.responsibility_2')}</li>
+              <li>{t('legal.responsibility_3')}</li>
+              <li>{t('legal.responsibility_4')}</li>
+            </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>8. {t('legal.intellectual')}</h3>
             <p>{t('legal.intellectual_text')}</p>
+            <p>{t('legal.intellectual_text2')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>9. {t('legal.modifications')}</h3>
             <p>{t('legal.modifications_text')}</p>

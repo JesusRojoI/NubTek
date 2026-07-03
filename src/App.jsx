@@ -16,6 +16,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Success from './pages/Success';
 import Personalizado from './pages/Personalizado';
+import ProductDetail from './pages/ProductDetail';
 function App() {
   return (
     <LanguageProvider>
@@ -37,6 +38,7 @@ function App() {
               <Route path="/finalizar-compra" element={<Checkout />} />
               <Route path="/compra-exitosa" element={<Success />} />
               <Route path="/personalizado" element={<Personalizado />} />
+              <Route path="/producto/:category/:productId" element={<ProductDetail />} />
             </Routes>
           </main>
           <Footer />

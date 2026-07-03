@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useCart } from '../context/CartContext';
+
+function getLanguage() {
+  return localStorage.getItem('language') || 'es';
+}
 
 const Personalizado = () => {
+  const { t } = useTranslation();
+  const { addToCart } = useCart();
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -27,7 +35,7 @@ const Personalizado = () => {
     setStatus({ type: '', message: '' });
 
     if (!formData.name || !formData.email) {
-      setStatus({ type: 'error', message: 'Por favor completa los campos requeridos.' });
+      setStatus({ type: 'error', message: t('contact.error_required') });
       setLoading(false);
       return;
     }
@@ -45,17 +53,27 @@ const Personalizado = () => {
         service: 'Servicio personalizado'
       });
 
-      setStatus({ type: 'success', message: '¡Cotización enviada con éxito! Te contactaremos pronto.' });
+      // Agregar al carrito
+      const finalAmount = formData.amount ? parseFloat(formData.amount) * 1.16 : 0;
+      addToCart({
+        id: 'cotizacion-' + Date.now(),
+        name: (getLanguage() === 'en' ? 'Custom Service' : 'Servicio Personalizado') + ' - ' + (formData.quoteId || formData.name),
+        //name: 'Servicio Personalizado - ' + (formData.quoteId || formData.name),
+        price: finalAmount || 0,
+        emoji: '✨',
+        type: 'servicio'
+      });
+
+      setStatus({ type: 'success', message: t('personalizado.success') });
       setFormData({ name: '', lastName: '', email: '', quoteId: '', amount: '', details: '' });
     } catch (error) {
       console.error('Error:', error);
-      setStatus({ type: 'error', message: 'Error al enviar. Intenta de nuevo.' });
+      setStatus({ type: 'error', message: t('contact.error_generic') });
     } finally {
       setLoading(false);
     }
   };
    
-
   const iva = formData.amount ? (parseFloat(formData.amount) * 0.16).toFixed(2) : '0.00';
   const total = formData.amount ? (parseFloat(formData.amount) * 1.16).toFixed(2) : '0.00';
 
@@ -83,9 +101,9 @@ const Personalizado = () => {
 
         <div style={{ position: 'relative', zIndex: 1 }}>
           <p style={{ color: '#94a3b8', marginBottom: '15px', fontSize: '0.95rem' }}>
-            <Link to="/" style={{ color: '#3b82f6', textDecoration: 'none' }}>Inicio</Link>
+            <Link to="/" style={{ color: '#3b82f6', textDecoration: 'none' }}>{t('nav.home')}</Link>
             <span style={{ margin: '0 10px' }}>/</span>
-            Servicio exclusivo
+            {t('personalizado.title')}
           </p>
           
           <span style={{
@@ -99,7 +117,7 @@ const Personalizado = () => {
             letterSpacing: '2px',
             marginBottom: '20px'
           }}>
-            COTIZACIÓN
+            {t('personalizado.badge')}
           </span>
           
           <h1 style={{
@@ -107,7 +125,7 @@ const Personalizado = () => {
             fontWeight: '800',
             marginBottom: '15px'
           }}>
-            ¿Buscas una solución a tu medida?
+            {t('personalizado.hero_title')}
           </h1>
           
           <p style={{
@@ -117,7 +135,7 @@ const Personalizado = () => {
             margin: '0 auto',
             lineHeight: '1.8'
           }}>
-            Cuéntanos qué necesitas y diseñaremos un plan personalizado para tu proyecto.
+            {t('personalizado.hero_desc')}
           </p>
         </div>
       </section>
@@ -138,18 +156,11 @@ const Personalizado = () => {
           padding: '45px',
           boxShadow: '0 10px 40px rgba(0,0,0,0.08)'
         }}>
-          <h2 style={{
-            fontSize: '1.8rem',
-            color: '#0f172a',
-            marginBottom: '10px'
-          }}>
-            ✨ Servicio personalizado
+          <h2 style={{ fontSize: '1.8rem', color: '#0f172a', marginBottom: '10px' }}>
+            ✨ {t('personalizado.form_title')}
           </h2>
-          <p style={{
-            color: '#64748b',
-            marginBottom: '30px'
-          }}>
-            Completa el formulario y recibe una cotización adaptada a tus necesidades.
+          <p style={{ color: '#64748b', marginBottom: '30px' }}>
+            {t('personalizado.form_desc')}
           </p>
 
           {status.message && (
@@ -174,351 +185,110 @@ const Personalizado = () => {
           <form onSubmit={handleSubmit}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
               <div>
-                <label style={{
-                  display: 'block',
-                  marginBottom: '8px',
-                  fontWeight: '600',
-                  color: '#334155',
-                  fontSize: '0.9rem'
-                }}>
-                  Nombre <span style={{ color: '#ef4444' }}>*</span>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.9rem' }}>
+                  {t('checkout.name')} <span style={{ color: '#ef4444' }}>*</span>
                 </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Tu nombre"
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    border: '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    fontSize: '0.95rem',
-                    outline: 'none',
-                    transition: 'all 0.3s',
-                    background: '#f8fafc',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#2563eb';
-                    e.target.style.background = 'white';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#e2e8f0';
-                    e.target.style.background = '#f8fafc';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                />
+                <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder={t('checkout.name')}
+                  style={{ width: '100%', padding: '14px 16px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', background: '#f8fafc', boxSizing: 'border-box' }}
+                  onFocus={(e) => { e.target.style.borderColor = '#2563eb'; e.target.style.background = 'white'; e.target.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)'; }}
+                  onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; e.target.style.boxShadow = 'none'; }} />
               </div>
 
               <div>
-                <label style={{
-                  display: 'block',
-                  marginBottom: '8px',
-                  fontWeight: '600',
-                  color: '#334155',
-                  fontSize: '0.9rem'
-                }}>
-                  Apellidos
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.9rem' }}>
+                  {t('checkout.lastname')}
                 </label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="Tus apellidos"
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    border: '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    fontSize: '0.95rem',
-                    outline: 'none',
-                    transition: 'all 0.3s',
-                    background: '#f8fafc',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#2563eb';
-                    e.target.style.background = 'white';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#e2e8f0';
-                    e.target.style.background = '#f8fafc';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                />
+                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder={t('checkout.lastname')}
+                  style={{ width: '100%', padding: '14px 16px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', background: '#f8fafc', boxSizing: 'border-box' }}
+                  onFocus={(e) => { e.target.style.borderColor = '#2563eb'; e.target.style.background = 'white'; e.target.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)'; }}
+                  onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; e.target.style.boxShadow = 'none'; }} />
               </div>
             </div>
 
             <div style={{ marginBottom: '20px' }}>
-              <label style={{
-                display: 'block',
-                marginBottom: '8px',
-                fontWeight: '600',
-                color: '#334155',
-                fontSize: '0.9rem'
-              }}>
-                Correo electrónico <span style={{ color: '#ef4444' }}>*</span>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.9rem' }}>
+                {t('checkout.email')} <span style={{ color: '#ef4444' }}>*</span>
               </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="tu@email.com"
-                style={{
-                  width: '100%',
-                  padding: '14px 16px',
-                  border: '2px solid #e2e8f0',
-                  borderRadius: '12px',
-                  fontSize: '0.95rem',
-                  outline: 'none',
-                  transition: 'all 0.3s',
-                  background: '#f8fafc',
-                  boxSizing: 'border-box'
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#2563eb';
-                  e.target.style.background = 'white';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#e2e8f0';
-                  e.target.style.background = '#f8fafc';
-                  e.target.style.boxShadow = 'none';
-                }}
-              />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="tu@email.com"
+                style={{ width: '100%', padding: '14px 16px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', background: '#f8fafc', boxSizing: 'border-box' }}
+                onFocus={(e) => { e.target.style.borderColor = '#2563eb'; e.target.style.background = 'white'; e.target.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)'; }}
+                onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; e.target.style.boxShadow = 'none'; }} />
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
               <div>
-                <label style={{
-                  display: 'block',
-                  marginBottom: '8px',
-                  fontWeight: '600',
-                  color: '#334155',
-                  fontSize: '0.9rem'
-                }}>
-                  ID de Cotización
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.9rem' }}>
+                  {t('personalizado.quote_id')}
                 </label>
-                <input
-                  type="text"
-                  name="quoteId"
-                  value={formData.quoteId}
-                  onChange={handleChange}
-                  placeholder="Opcional"
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    border: '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    fontSize: '0.95rem',
-                    outline: 'none',
-                    transition: 'all 0.3s',
-                    background: '#f8fafc',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#2563eb';
-                    e.target.style.background = 'white';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#e2e8f0';
-                    e.target.style.background = '#f8fafc';
-                  }}
-                />
+                <input type="text" name="quoteId" value={formData.quoteId} onChange={handleChange} placeholder={t('personalizado.quote_id')}
+                  style={{ width: '100%', padding: '14px 16px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', background: '#f8fafc', boxSizing: 'border-box' }}
+                  onFocus={(e) => { e.target.style.borderColor = '#2563eb'; e.target.style.background = 'white'; }}
+                  onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; }} />
               </div>
 
               <div>
-                <label style={{
-                  display: 'block',
-                  marginBottom: '8px',
-                  fontWeight: '600',
-                  color: '#334155',
-                  fontSize: '0.9rem'
-                }}>
-                  Monto a Pagar (MXN)
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.9rem' }}>
+                  {t('personalizado.amount')}
                 </label>
-                <input
-                  type="number"
-                  name="amount"
-                  value={formData.amount}
-                  onChange={handleChange}
-                  placeholder="0.00"
-                  min="0"
-                  step="0.01"
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    border: '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    fontSize: '0.95rem',
-                    outline: 'none',
-                    transition: 'all 0.3s',
-                    background: '#f8fafc',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#2563eb';
-                    e.target.style.background = 'white';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#e2e8f0';
-                    e.target.style.background = '#f8fafc';
-                  }}
-                />
+                <input type="number" name="amount" value={formData.amount} onChange={handleChange} placeholder="0.00" min="0" step="0.01"
+                  style={{ width: '100%', padding: '14px 16px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', background: '#f8fafc', boxSizing: 'border-box' }}
+                  onFocus={(e) => { e.target.style.borderColor = '#2563eb'; e.target.style.background = 'white'; }}
+                  onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; }} />
               </div>
             </div>
 
             {formData.amount > 0 && (
-              <div style={{
-                padding: '15px 20px',
-                background: '#f0f9ff',
-                borderRadius: '12px',
-                marginBottom: '20px',
-                border: '1px solid #bae6fd'
-              }}>
+              <div style={{ padding: '15px 20px', background: '#f0f9ff', borderRadius: '12px', marginBottom: '20px', border: '1px solid #bae6fd' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.9rem', color: '#475569' }}>
-                  <span>Subtotal</span>
-                  <span>${parseFloat(formData.amount).toFixed(2)}</span>
+                  <span>{t('cart.subtotal')}</span><span>${parseFloat(formData.amount).toFixed(2)}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.9rem', color: '#475569' }}>
-                  <span>IVA (16%)</span>
-                  <span>${iva}</span>
+                  <span>{t('cart.tax')}</span><span>${iva}</span>
                 </div>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  paddingTop: '10px',
-                  borderTop: '2px solid #bae6fd',
-                  fontWeight: '700',
-                  fontSize: '1.1rem',
-                  color: '#0f172a'
-                }}>
-                  <span>Total</span>
-                  <span style={{ color: '#2563eb' }}>${total}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '10px', borderTop: '2px solid #bae6fd', fontWeight: '700', fontSize: '1.1rem', color: '#0f172a' }}>
+                  <span>{t('cart.total')}</span><span style={{ color: '#2563eb' }}>${total}</span>
                 </div>
               </div>
             )}
 
             <div style={{ marginBottom: '25px' }}>
-              <label style={{
-                display: 'block',
-                marginBottom: '8px',
-                fontWeight: '600',
-                color: '#334155',
-                fontSize: '0.9rem'
-              }}>
-                Detalles del servicio
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#334155', fontSize: '0.9rem' }}>
+                {t('personalizado.details')}
               </label>
-              <textarea
-                name="details"
-                value={formData.details}
-                onChange={handleChange}
-                rows="4"
-                placeholder="Describe brevemente qué necesitas..."
-                style={{
-                  width: '100%',
-                  padding: '14px 16px',
-                  border: '2px solid #e2e8f0',
-                  borderRadius: '12px',
-                  fontSize: '0.95rem',
-                  outline: 'none',
-                  resize: 'vertical',
-                  fontFamily: 'inherit',
-                  transition: 'all 0.3s',
-                  background: '#f8fafc',
-                  boxSizing: 'border-box',
-                  minHeight: '120px'
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#2563eb';
-                  e.target.style.background = 'white';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#e2e8f0';
-                  e.target.style.background = '#f8fafc';
-                }}
-              ></textarea>
+              <textarea name="details" value={formData.details} onChange={handleChange} rows="4"
+                placeholder={t('personalizado.hero_desc')}
+                style={{ width: '100%', padding: '14px 16px', border: '2px solid #e2e8f0', borderRadius: '12px', fontSize: '0.95rem', outline: 'none', resize: 'vertical', fontFamily: 'inherit', transition: 'all 0.3s', background: '#f8fafc', boxSizing: 'border-box', minHeight: '120px' }}
+                onFocus={(e) => { e.target.style.borderColor = '#2563eb'; e.target.style.background = 'white'; }}
+                onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; }} />
             </div>
 
-            <p style={{
-              fontSize: '0.8rem',
-              color: '#ef4444',
-              marginBottom: '20px',
-              padding: '12px',
-              background: '#fef2f2',
-              borderRadius: '10px',
-              fontWeight: '500'
-            }}>
-              ⚠️ IMPORTANTE: El importe final incluirá el 16% de IVA.
+            <p style={{ fontSize: '0.8rem', color: '#ef4444', marginBottom: '20px', padding: '12px', background: '#fef2f2', borderRadius: '10px', fontWeight: '500' }}>
+              ⚠️ {t('personalizado.warning')}
             </p>
 
-            <button
-              type="submit"
-              disabled={loading}
-              style={{
-                width: '100%',
-                padding: '16px',
-                background: loading ? '#94a3b8' : 'linear-gradient(135deg, #2563eb, #1d4ed8)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '12px',
-                fontWeight: '700',
-                fontSize: '1.05rem',
-                cursor: loading ? 'not-allowed' : 'pointer',
-                transition: 'all 0.3s',
-                boxShadow: '0 4px 15px rgba(37, 99, 235, 0.3)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '10px'
-              }}
-              onMouseEnter={(e) => {
-                if (!loading) {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(37, 99, 235, 0.4)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 4px 15px rgba(37, 99, 235, 0.3)';
-              }}
-            >
+            <button type="submit" disabled={loading} style={{
+              width: '100%', padding: '16px',
+              background: loading ? '#94a3b8' : 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+              color: 'white', border: 'none', borderRadius: '12px',
+              fontWeight: '700', fontSize: '1.05rem',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              transition: 'all 0.3s',
+              boxShadow: '0 4px 15px rgba(37, 99, 235, 0.3)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'
+            }}
+            onMouseEnter={(e) => { if (!loading) { e.target.style.transform = 'translateY(-2px)'; e.target.style.boxShadow = '0 8px 25px rgba(37, 99, 235, 0.4)'; } }}
+            onMouseLeave={(e) => { e.target.style.transform = 'translateY(0)'; e.target.style.boxShadow = '0 4px 15px rgba(37, 99, 235, 0.3)'; }}>
               {loading ? (
-                <>
-                  <span style={{
-                    width: '20px',
-                    height: '20px',
-                    border: '2px solid rgba(255,255,255,0.3)',
-                    borderTopColor: 'white',
-                    borderRadius: '50%',
-                    animation: 'spin 0.8s linear infinite',
-                    display: 'inline-block'
-                  }}></span>
-                  Enviando solicitud...
-                </>
+                <><span style={{ width: '20px', height: '20px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', animation: 'spin 0.8s linear infinite', display: 'inline-block' }}></span> {t('contact.sending')}</>
               ) : (
-                <>
-                  💳 Pagar
-                </>
+                <>💳 {t('personalizado.pay')}</>
               )}
             </button>
           </form>
         </div>
       </section>
 
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
 };

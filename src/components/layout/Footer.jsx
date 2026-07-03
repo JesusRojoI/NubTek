@@ -57,11 +57,9 @@ const Footer = () => {
         <div>
           <h4 style={{ color: 'white', marginBottom: '15px' }}>{t('footer.contact_title')}</h4>
           <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: '1.8' }}>
-            Avenida Homero, N° 203, Piso 8, Int. 804,<br />
-            Colonia Polanco V Sección,<br />
-            C.P. 11560, Alcaldía Miguel Hidalgo,<br />
-            Ciudad de México
+            {t('footer.address')}
           </p>
+          
           <p style={{ color: '#94a3b8', marginTop: '10px' }}>
             📞 +52 1 55 5920 2774
           </p>

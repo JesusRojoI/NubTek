@@ -7,7 +7,7 @@ const Privacidad = () => {
 
   return (
     <>
-      <Helmet><title>{t('footer.privacy')} - FetchBrand</title></Helmet>
+      <Helmet><title>{t('footer.privacy')} - NubTek</title></Helmet>
 
       <section style={{
         padding: '140px 20px 80px', textAlign: 'center',
@@ -35,11 +35,9 @@ const Privacidad = () => {
             <h2 style={{ color: '#0f172a', marginBottom: '25px', fontSize: '1.5rem' }}>
               {t('privacy.title')}
             </h2>
-
             <p>{t('privacy.intro')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>1.- {t('privacy.data')}</h3>
-            <p>{t('privacy.data_text')}</p>
             <ul>
               <li>{t('privacy.data_1')}</li>
               <li>{t('privacy.data_2')}</li>
@@ -49,17 +47,16 @@ const Privacidad = () => {
             <p><strong>{t('privacy.important')}</strong> {t('privacy.important_text')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>2.- {t('privacy.purposes')}</h3>
-            <p>{t('privacy.purposes_text')}</p>
             <ul>
               <li>{t('privacy.purpose_1')}</li>
               <li>{t('privacy.purpose_2')}</li>
               <li>{t('privacy.purpose_3')}</li>
               <li>{t('privacy.purpose_4')}</li>
               <li>{t('privacy.purpose_5')}</li>
+              <li>{t('privacy.purpose_6')}</li>
             </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>3.- {t('privacy.legal_basis')}</h3>
-            <p>{t('privacy.legal_basis_text')}</p>
             <ul>
               <li>{t('privacy.basis_1')}</li>
               <li>{t('privacy.basis_2')}</li>
@@ -68,13 +65,24 @@ const Privacidad = () => {
             </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>4.- {t('privacy.rights')}</h3>
-            <p>{t('privacy.rights_text')}</p>
+            <ul>
+              <li>{t('privacy.rights_1')}</li>
+              <li>{t('privacy.rights_2')}</li>
+              <li>{t('privacy.rights_3')}</li>
+              <li>{t('privacy.rights_4')}</li>
+            </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>5.- {t('privacy.transfers')}</h3>
-            <p>{t('privacy.transfers_text')}</p>
+            <ul>
+              <li>{t('privacy.transfers_1')}</li>
+              <li>{t('privacy.transfers_2')}</li>
+            </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>6.- {t('privacy.security')}</h3>
-            <p>{t('privacy.security_text')}</p>
+            <ul>
+              <li>{t('privacy.security_1')}</li>
+              <li>{t('privacy.security_2')}</li>
+            </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>7.- {t('privacy.cookies')}</h3>
             <p>{t('privacy.cookies_text')}</p>
@@ -82,13 +90,16 @@ const Privacidad = () => {
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>8.- {t('privacy.minors')}</h3>
             <p>{t('privacy.minors_text')}</p>
 
-            <h3 style={{ color: '#2563eb', marginTop: '25px' }}>9.- {t('privacy.changes')}</h3>
+            <h3 style={{ color: '#2563eb', marginTop: '25px' }}>9.- {t('privacy.profeco_transfers')}</h3>
+            <p>{t('privacy.profeco_transfers_text')}</p>
+
+            <h3 style={{ color: '#2563eb', marginTop: '25px' }}>10.- {t('privacy.changes')}</h3>
             <p>{t('privacy.changes_text')}</p>
 
-            <h3 style={{ color: '#2563eb', marginTop: '25px' }}>10.- {t('privacy.contact_privacy')}</h3>
-            <p>{t('privacy.contact_privacy_text')}</p>
-            <p style={{ marginTop: '10px' }}><strong>{t('contact.email_label')}:</strong> soluciones@fetchbrand.com</p>
-            <p><strong>{t('contact.address')}:</strong> Avenida Homero, N°203, Piso 8, Int. 804, Colonia Polanco V Seccion, C.P. 11560, Alcaldía Miguel Hidalgo, Ciudad De Mexico.</p>
+            <h3 style={{ color: '#2563eb', marginTop: '25px' }}>11.- {t('privacy.contact_privacy')}</h3>
+            <p>{t('privacy.contact_privacy_email')}</p>
+            <p>{t('privacy.contact_privacy_address')}</p>
+            <p>{t('privacy.contact_privacy_channels')}</p>
           </div>
         </div>
       </section>

@@ -7,7 +7,7 @@ const Reembolsos = () => {
 
   return (
     <>
-      <Helmet><title>{t('footer.refund')} - FetchBrand</title></Helmet>
+      <Helmet><title>{t('footer.refund')} - NubTek</title></Helmet>
 
       <section style={{
         padding: '140px 20px 80px', textAlign: 'center',
@@ -47,10 +47,17 @@ const Reembolsos = () => {
             <p><strong>{t('refund.after')}</strong> {t('refund.after_text')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>4.- {t('refund.process')}</h3>
-            <p>{t('refund.process_text')}</p>
+            <ul>
+              <li>{t('refund.process_1')}</li>
+              <li>{t('refund.process_2')}</li>
+              <li>{t('refund.process_3')}</li>
+            </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>5.- {t('refund.exclusions')}</h3>
-            <p>{t('refund.exclusions_text')}</p>
+            <ul>
+              <li>{t('refund.exclusions_1')}</li>
+              <li>{t('refund.exclusions_2')}</li>
+            </ul>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>6.- {t('refund.how_to')}</h3>
             <p>{t('refund.how_to_text')}</p>
@@ -60,7 +67,7 @@ const Reembolsos = () => {
               <li>{t('refund.how_3')}</li>
               <li>{t('refund.how_4')}</li>
             </ul>
-            <p>{t('refund.response_time')}</p>
+            <p>{t('refund.how_response')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>7.- {t('refund.profeco')}</h3>
             <p>{t('refund.profeco_text')}</p>
@@ -69,9 +76,8 @@ const Reembolsos = () => {
             <p>{t('refund.modifications_text')}</p>
 
             <h3 style={{ color: '#2563eb', marginTop: '25px' }}>9. {t('refund.contact_refund')}</h3>
-            <p>{t('refund.contact_refund_text')}</p>
-            <p style={{ marginTop: '10px' }}><strong>{t('contact.email_label')}:</strong> soluciones@fetchbrand.com</p>
-            <p>{t('refund.form_text')}</p>
+            <p>{t('refund.contact_refund_email')}</p>
+            <p>{t('refund.contact_refund_form')}</p>
           </div>
         </div>
       </section>

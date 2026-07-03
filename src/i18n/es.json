@@ -48,42 +48,42 @@
     }
   },
   "services": {
-    "title": "Servicios",
-    "subtitle": "Un solo lugar para todas tus soluciones.",
-    "description": "Centralizamos todo lo que tu empresa necesita: asistencia virtual, gestión digital, atención al cliente y soporte de contenido.",
-    "cta_request": "Solicitar servicio",
-    "cta_plans": "Ver planes",
-    "items": {
-      "admin": {
-        "title": "Gestión Administrativa",
-        "description": "Organización de agendas, correos electrónicos, archivos digitales y bases de datos para que todo fluya con precisión."
-      },
-      "support": {
-        "title": "Atención al Cliente",
-        "description": "Respondemos mensajes, filtramos llamadas, gestionamos contactos y atendemos quejas con profesionalismo."
-      },
-      "digital": {
-        "title": "Soporte Digital",
-        "description": "Creamos y programamos publicaciones, redactamos correos y newsletters, y diseñamos imágenes y banners."
-      },
-      "billing": {
-        "title": "Facturación y Reportes",
-        "description": "Facturación, conciliación, reportes financieros con precisión y orden."
-      },
-      "projects": {
-        "title": "Coordinación de Proyectos",
-        "description": "Supervisamos tareas, gestionamos herramientas como Trello o Asana."
-      },
-      "logistics": {
-        "title": "Reservaciones y Logística",
-        "description": "Coordinación de viajes, reservaciones y logística integral."
-      },
-      "advanced": {
-      "title": "Tareas Avanzadas",
+  "title": "Servicios",
+  "subtitle": "Un solo lugar para todas tus soluciones.",
+  "description": "Centralizamos todo lo que tu empresa necesita: asistencia virtual, gestión digital, atención al cliente y soporte de contenido.",
+  "cta_request": "Solicitar servicio",
+  "cta_plans": "Ver planes",
+  "items": {
+    "admin": {
+      "title": "Administración / Tareas básicas",
+      "description": "Organización de agendas, correos electrónicos, archivos digitales y bases de datos para que todo fluya con precisión."
+    },
+    "support": {
+      "title": "Atención al cliente / Comunicaciones",
+      "description": "Respondemos mensajes, filtramos llamadas, gestionamos contactos y atendemos quejas con profesionalismo."
+    },
+    "digital": {
+      "title": "Soporte para Contenido y Marketing Digital",
+      "description": "Creamos y programamos publicaciones, redactamos correos y newsletters, y diseñamos imágenes y banners."
+    },
+    "billing": {
+      "title": "Facturación y Reportes",
+      "description": "Facturación, conciliación, reportes financieros con precisión y orden."
+    },
+    "projects": {
+      "title": "Gestión de Proyectos / Coordinación",
+      "description": "Supervisamos tareas, gestionamos herramientas como Trello o Asana."
+    },
+    "logistics": {
+      "title": "Reservaciones y Logística",
+      "description": "Coordinación de viajes, reservaciones y logística integral."
+    },
+    "advanced": {
+      "title": "Tareas Administrativas Avanzadas (costo por hora)",
       "description": "Reservaciones, logística, facturación y reportes financieros con precisión y seguimiento de pagos."
     }
-    }
-  },
+  }
+},
   "plans": {
     "title": "Planes",
     "subtitle": "Soluciones flexibles para tu negocio",
@@ -145,7 +145,11 @@
     "continue": "Seguir comprando",
     "clear": "Vaciar carrito",
     "checkout": "Finalizar compra",
-    "plan_tag": "PLAN"
+    "plan_tag": "PLAN",
+    "add_to_cart": "Agregar al carrito",
+    "in_cart": "En el carrito",
+      "added": "¡Agregado al carrito!"
+
   },
   "checkout": {
       "secure_payment": "Pagos seguros con",
@@ -193,112 +197,137 @@
   "legal": {
   "terms_title": "TÉRMINOS Y CONDICIONES DE USO DEL SITIO Y CONTRATACIÓN DE SERVICIOS",
   "identity": "Identidad y Aceptación",
-  "identity_text": "El presente documento establece los términos y condiciones aplicables al acceso, navegación y uso del sitio web: nubtek.com (en adelante el \"Sitio\") de ALENNA TREAT, S.A. de C.V. (\"NubTek\"), así como a la contratación y entrega de los servicios ofrecidos en dicho sitio.",
+  "identity_text": "El presente documento establece los términos y condiciones aplicables al acceso, navegación y uso del sitio web: nubtek.com.mx (en adelante el \"Sitio\") de ALENNA TREAT, S.A. de C.V. (\"Nubtek\"), así como a la contratación y entrega de los servicios ofrecidos en dicho sitio. El uso del sitio implica la aceptación expresa e incondicional de estos Términos y Condiciones, así como del Aviso de Privacidad disponible en el portal. Si el usuario (\"Cliente\" o \"Usuario\") no está de acuerdo con alguna disposición, deberá abstenerse de utilizar la página y/o los servicios.",
   "services": "Servicios Ofrecidos",
-  "services_text": "NubTek ofrece, a través de su tienda en línea, servicios personales y empresariales.",
+  "services_text": "Nubtek ofrece, a través de su tienda en línea, servicios personales y empresariales, incluyendo, pero no limitados a:",
   "service_1": "Administración de tareas básicas (gestión de agendas, organización de correo, manejo de archivos digitales).",
   "service_2": "Atención a clientes y comunicación multicanal.",
   "service_3": "Soporte para contenido y marketing digital.",
   "service_4": "Gestión de proyectos y organización de eventos virtuales.",
   "service_5": "Tareas administrativas avanzadas (facturación, conciliación bancaria, reportes financieros, seguimiento de pagos).",
   "service_6": "Reservaciones de viajes y logística integral.",
+  "services_footer": "El detalle, alcance y costo de cada servicio serán descritos en la propia tienda y pueden variar de acuerdo con el nivel requerido por el cliente.",
   "usage": "Uso del Sitio y Restricciones",
-  "usage_text": "El acceso y navegación en el sitio solo podrá realizarse por mayores de edad con capacidad de ejercicio suficiente conforme a la legislación mexicana.",
+  "usage_text": "El acceso y navegación en el sitio solo podrá realizarse por mayores de edad con capacidad de ejercicio suficiente conforme a la legislación mexicana. El usuario se obliga a utilizar la página y los servicios en estricto apego a la ley, las buenas costumbres y los presentes Términos y Condiciones, y a abstenerse de realizar conductas que afecten la operación, reputación o integridad de Nubtek.",
+  "usage_text2": "No está permitida la inclusión de enlaces, uso comercial no autorizado o la reproducción parcial o total de los contenidos del sitio sin el consentimiento expreso y por escrito de Nubtek. Se prohíbe la utilización indebida de marcas, logos, imágenes, información y cualquier propiedad intelectual exhibida en el sitio.",
   "registration": "Registro y Contratación",
-  "registration_text": "Para contratar cualquier servicio, el usuario debe seguir el flujo de la tienda en línea.",
+  "registration_text": "Para contratar cualquier servicio en Nubtek, el usuario debe realizar los siguientes pasos conforme al flujo de la tienda en línea:",
+  "registration_1": "Seleccionar el paquete deseado de entre las opciones disponibles: Nivel básico, Nivel intermedio o Nivel avanzado, cada uno con características, alcance y precio claramente señalados en pesos mexicanos, más el impuesto al valor agregado (IVA) correspondiente.",
+  "registration_2": "El paquete elegido se agrega al carrito de compra digital, donde el usuario puede verificar el resumen de su selección y el monto total a pagar, incluyendo la especificación del IVA.",
+  "registration_3": "Para finalizar la compra, el usuario debe proceder al pago utilizando únicamente tarjeta de crédito o débito, a través del procesador de pagos autorizado integrado en el sitio web, garantizando que todas las transacciones sean seguras.",
+  "registration_4": "El proveedor (Nubtek) enviará al usuario una confirmación electrónica con el detalle del paquete contratado, el monto pagado, impuestos desglosados y las instrucciones siguientes para el inicio del servicio.",
+  "registration_footer": "La contratación y adquisición de cualquiera de los servicios implica aceptación plena de estos Términos y Condiciones, del Aviso de Privacidad, así como del precio y condiciones particulares del paquete seleccionado.",
   "payment": "Proceso de Compra, Pagos y Entrega",
-  "payment_text": "Los precios vigentes estarán disponibles en el sitio. El pago se considerará recibido una vez validado por la plataforma.",
+  "payment_1": "Los precios vigentes, especificaciones y alcance de los servicios estarán disponibles en el sitio.",
+  "payment_2": "El pago se considerará recibido una vez validado por la plataforma o el sistema bancario correspondiente.",
+  "payment_3": "El prestador enviará una confirmación de compra y el detalle del servicio contratado.",
+  "payment_4": "Cualquier condición especial (plazos de entrega, alcances particulares) será definida y aceptada antes de la contratación formal.",
+  "payment_5": "Todos los servicios y precios incluyen los impuestos vigentes conforme a la ley.",
   "cancellation": "Cancelaciones, Cambios y Políticas de Reembolso",
-  "cancellation_text": "Se permite la cancelación de un servicio antes del inicio de su ejecución.",
+  "cancellation_1": "Se permite la cancelación de un servicio antes del inicio de su ejecución. Una vez iniciado, no hay reembolsos, salvo causas atribuibles a Nubtek (ej. falta de prestación, imposibilidad técnica u operativa comprobada).",
+  "cancellation_2": "Las solicitudes de reembolso válidas serán procesadas por el mismo método de pago, en un periodo máximo de 15 días hábiles contados a partir de la determinación favorable.",
+  "cancellation_3": "No aplican reembolsos por cambios de opinión, incompatibilidades no imputables a Nubtek o errores de compra del usuario.",
+  "cancellation_4": "Servicios personalizados y reservaciones fuera de plataforma de Nubtek estarán sujetos a las políticas de los proveedores externos.",
   "responsibility": "Responsabilidad, Garantías y Limitaciones",
-  "responsibility_text": "El usuario es responsable de proporcionar datos veraces.",
+  "responsibility_1": "El usuario es responsable de proporcionar datos veraces, mantener infraestructura mínima requerida y cumplir instrucciones de uso o acceso.",
+  "responsibility_2": "Nubtek no garantiza la disponibilidad, continuidad ni infalibilidad del sitio y los servicios. Los mismos se prestan \"como están\" y \"según disponibilidad\", y la responsabilidad total frente al usuario no podrá exceder el monto efectivamente pagado por el servicio en cuestión.",
+  "responsibility_3": "Nubtek no será responsable por pérdida de datos, fallas ajenas a su control, daños por virus o ataques informáticos, ni por interrupciones derivadas de fuerza mayor, causas imputables a proveedores externos o a fallas de internet.",
+  "responsibility_4": "La empresa únicamente será responsable por la ejecución imperfecta de servicios cuando sea imputable directamente a su personal.",
   "intellectual": "Propiedad Intelectual y Confidencialidad",
-  "intellectual_text": "Todos los textos, imágenes, gráficos, códigos y marcas son propiedad de NubTek.",
+  "intellectual_text": "Todos los textos, imágenes, gráficos, códigos, marcas y demás elementos presentes en el sitio y derivados de los servicios son propiedad de Nubtek o de sus licenciantes, salvo indicación en contrario. Queda prohibida la reproducción total o parcial, modificación, extracción o uso comercial no autorizado.",
+  "intellectual_text2": "Toda información de cliente obtenida durante la prestación de los servicios será tratada de acuerdo con el Aviso de Privacidad y la normativa aplicable en México (LFPDPPP). El prestador podrá divulgarla solo ante requerimiento legal o para la debida prestación del servicio.",
   "modifications": "Modificaciones",
-  "modifications_text": "NubTek podrá modificar estos Términos y Condiciones en cualquier momento.",
+  "modifications_text": "Nubtek podrá modificar estos Términos y Condiciones en cualquier momento, informando de tales cambios a través del propio portal. El uso continuo del sitio después de cualquier cambio implica aceptación automática de la versión vigente. Se recomienda revisar periódicamente este documento.",
   "jurisdiction": "Ley Aplicable y Jurisdicción",
-  "jurisdiction_text": "Este acuerdo se rige por las leyes de los Estados Unidos Mexicanos.",
+  "jurisdiction_text": "Este acuerdo se rige por las leyes de los Estados Unidos Mexicanos. Para la interpretación y cumplimiento de estos términos, las partes se someten a la jurisdicción de los tribunales competentes de la Ciudad de México, renunciando a cualquier otro fuero que pudiera corresponderles por razón de domicilio presente o futuro. Cualquier controversia podrá ser sometida primero a mediación y, en su caso, será dirimida por los tribunales competentes.",
   "contact_legal": "Contacto",
-  "contact_legal_text": "Para cualquier aclaración: soluciones@nubtek.com",
-  "terms_placeholder": "Contenido de Términos y Condiciones.",
-  "privacy_placeholder": "Contenido de Aviso de Privacidad.",
-  "refund_placeholder": "Contenido de Política de Reembolso."
+  "contact_legal_text": "Para cualquier aclaración, reclamación, ejercicio de derechos o solicitud asociada a estos Términos y Condiciones o a los servicios, el usuario podrá comunicarse mediante los mecanismos proporcionados en la sección de Contacto del sitio o el correo electrónico oficial cuando se asigne."
 },
 "categories": {
-  "administracion-tareas-basicas": "Administración / Tareas Básicas",
+  "administracion-tareas-basicas": "Administración / Tareas básicas",
   "atencion-al-cliente-comunicaciones": "Atención al cliente / Comunicaciones",
   "gestion-de-proyectos-coordinacion": "Gestión de Proyectos / Coordinación",
-  "soporte-para-contenido-y-marketing-digital": "Soporte Digital / Marketing",
-  "tareas-administrativas-avanzadas-costo-por-hora": "Tareas Avanzadas"
+  "soporte-para-contenido-y-marketing-digital": "Soporte para Contenido y Marketing Digital",
+  "tareas-administrativas-avanzadas-costo-por-hora": "Tareas Administrativas Avanzadas (costo por hora)"
 },
-  "privacy": {
+"privacy": {
   "title": "AVISO DE PRIVACIDAD – ALENNA TREAT, S.A. DE C.V.",
-  "intro": "ALENNA TREAT, S.A. de C.V. (\"NubTek\") con domicilio en Avenida Homero, N°203, Piso 8, Int. 804, Colonia Polanco V Seccion, C.P. 11560, Alcaldia Miguel Hidalgo, Ciudad De Mexico, es responsable de la recopilación, uso y protección de los datos personales que los usuarios proporcionan a través de su Sitio y canales de atención al cliente.",
+  "intro": "ALENNA TREAT, S.A. de C.V. (\"Nubtek\") con domicilio en Avenida Homero, N°203, Piso 8, Int. 804, Colonia Polanco V Seccion, C.P. 11560, Alcaldia Miguel Hidalgo, Entidad Federativa Ciudad De Mexico, es responsable de la recopilación, uso y protección de los datos personales que los usuarios proporcionan a través de su Sitio y canales de atención al cliente. Este Aviso de Privacidad describe las prácticas de tratamiento de datos y las vías para ejercer derechos, en consonancia con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), su Reglamento y las buenas prácticas de defensa del consumidor promovidas por la PROFECO cuando aplique.",
   "data": "Datos personales que se recopilan",
-  "data_text": "NubTek recopila las siguientes categorías de datos personales:",
   "data_1": "Identificación y contacto (nombre, correo, teléfono, dirección fiscal y de entrega).",
   "data_2": "Datos de facturación (RFC, detalles fiscales).",
   "data_3": "Datos de uso web (IP, navegador, interacciones).",
   "data_4": "Historial de compras y solicitudes de servicio.",
   "important": "Importante:",
-  "important_text": "NubTek no almacena ni retiene información bancaria confidencial como números de tarjetas o claves bancarias. Todos los pagos se procesan mediante un agregador de pagos seguro y autorizado.",
+  "important_text": "Nubtek no almacena ni retiene información bancaria confidencial como números de tarjetas o claves bancarias. Todos los pagos se procesan mediante un agregador de pagos seguro y autorizado (pasarela de pagos externa), que cumple con las mejores prácticas y estándares legales y tecnológicos para la protección de su información financiera. Solo se recibe notificación de la transacción aprobada o rechazada de dicho agregador, nunca los detalles completos de tarjeta de crédito o débito.",
   "purposes": "Finalidades del tratamiento",
-  "purposes_text": "Los datos personales serán tratados para las siguientes finalidades:",
   "purpose_1": "Proporcionar, gestionar y facturar los servicios contratados.",
   "purpose_2": "Procesar pagos y prevenir fraudes mediante la pasarela de pagos autorizada.",
   "purpose_3": "Mantener comunicación con clientes para confirmaciones, entregas, soporte y notificaciones relevantes.",
   "purpose_4": "Cumplir obligaciones fiscales, contables y regulatorias.",
   "purpose_5": "Analizar, medir y mejorar productos y servicios; realizar encuestas de satisfacción cuando se cuente con consentimiento.",
+  "purpose_6": "En su caso, gestionar campañas de marketing conforme a los consentimientos otorgados.",
   "legal_basis": "Base legal para el tratamiento",
-  "legal_basis_text": "El tratamiento de datos se fundamenta en:",
   "basis_1": "Ejecución de un contrato para la contratación de servicios.",
   "basis_2": "Consentimiento para fines de marketing y para transferencias no esenciales cuando aplique.",
   "basis_3": "Intereses legítimos para seguridad, prevención de fraude y mejora de servicios.",
-  "basis_4": "Cumplimiento de obligaciones legales y regulatorias.",
+  "basis_4": "Cumplimiento de obligaciones legales y regulatorias, incluido lo relativo a protección al consumidor ante la PROFECO cuando corresponda.",
   "rights": "Derechos del titular y procedimientos para ejercerlos",
-  "rights_text": "El titular tiene derecho a ejercer sus derechos ARCO (acceso, rectificación, cancelación y oposición), así como a revocar el consentimiento para fines de marketing. Las solicitudes deben dirigirse a través de los canales descritos en la sección de Contacto.",
+  "rights_1": "ARCO: acceso, rectificación, cancelación y oposición; revocación de consentimiento para fines de marketing.",
+  "rights_2": "Derecho a ser notificado sobre actualizaciones de este Aviso de Privacidad y a retirar consentimiento en cualquier momento cuando proceda.",
+  "rights_3": "Procedimiento: las solicitudes deben dirigirse a través de los canales descritos en la sección de Contacto. El plazo para responder a solicitudes de derechos ARCO es conforme a la Ley, y el titular podrá recibir asesoría para completar formularios si lo requiere.",
+  "rights_4": "PROFECO y derechos del consumidor: en caso de discrepancias o reclamaciones relacionadas con prácticas de venta, publicidad o trato de datos personales en el contexto de servicios, el titular puede presentar reclamaciones ante PROFECO o consultar sus guías sobre derechos del consumidor y protección de datos. Nubtek proporcionará cualquier información razonable necesaria para la defensa de derechos ante las autoridades competentes y cooperará con PROFECO para la verificación de prácticas comerciales https://www.profecogobmx.net/proteccion",
   "transfers": "Transferencias de datos",
-  "transfers_text": "Los datos podrán transferirse a procesadores de pago, proveedores de servicios de hosting, CRM, analytics y atención al cliente, y a autoridades cuando sea necesario para cumplir la ley.",
+  "transfers_1": "A procesadores de pago, proveedores de servicios de hosting, CRM, analytics y atención al cliente, y a autoridades cuando sea necesario para cumplir la ley.",
+  "transfers_2": "Si existen transferencias internacionales, se indicarán salvaguardas adecuadas para proteger los datos.",
   "security": "Seguridad y conservación",
-  "security_text": "Se implementan medidas técnicas, administrativas y físicas para proteger datos personales frente a acceso no autorizado, pérdida o alteración. Los datos se conservan durante el periodo necesario para cumplir las finalidades.",
+  "security_1": "Implementación de medidas técnicas, administrativas y físicas para proteger datos personales frente a acceso no autorizado, pérdida o alteración.",
+  "security_2": "Conservación de datos durante el periodo necesario para cumplir finalidades, resolver disputas y cumplir obligaciones legales; los datos se eliminarán cuando ya no sean necesarios.",
   "cookies": "Cookies y tecnologías similares",
   "cookies_text": "Se usarán cookies para mejorar experiencia, analizar tráfico y gestionar sesiones. Los usuarios pueden gestionar preferencias a través de la configuración del Sitio.",
   "minors": "Menores de edad",
-  "minors_text": "El sitio no está dirigido a menores de edad. Se requerirá consentimiento de titular autorizado si se recolectan datos de menores por circunstancias excepcionales.",
+  "minors_text": "No dirigido a menores de edad. Se requerirá consentimiento de titular autorizado si se recolectan datos de menores por circunstancias excepcionales.",
+  "profeco_transfers": "Transferencias y retención de datos para PROFECO",
+  "profeco_transfers_text": "En caso de reclamaciones ante PROFECO, Nubtek podrá compartir datos pertinentes para la protección de derechos del consumidor y para sustentar reclamaciones. La información compartida se limitará al mínimo necesario y se realizará conforme a la ley.",
   "changes": "Cambios al Aviso de Privacidad",
   "changes_text": "Cualquier modificación será comunicada a través del Sitio y, cuando corresponda, por correo electrónico. El uso continuado tras cambios implica consentimiento a la versión vigente.",
   "contact_privacy": "Contacto",
-  "contact_privacy_text": "Para cualquier aclaración, reclamación, ejercicio de derechos o solicitud asociada a este Aviso de Privacidad, el usuario podrá comunicarse mediante los siguientes canales:"
+  "contact_privacy_email": "Correo: soluciones@nubtek.com.mx",
+  "contact_privacy_address": "Domicilio: AVENIDA HOMERO, N°203, PISO 8, INT. 804, COLONIA POLANCO V SECCION, C.P. 11560, ALCALDIA MIGUEL HIDALGO, ENTIDAD FEDERATIVA CIUDAD DE MEXICO.",
+  "contact_privacy_channels": "Canales de atención: formulario de contacto en el Sitio, chat, correo electrónico institucional."
 },
-  "refund": {
-  "title": "POLÍTICA DE CANCELACIONES Y REEMBOLSOS – NubTek",
+"refund": {
+  "title": "POLÍTICA DE CANCELACIONES Y REEMBOLSOS – Nubtek",
   "principles": "Principios Generales",
-  "principles_text": "Esta política tiene como objetivo establecer las condiciones bajo las cuales los usuarios/clientes de ALENNA TREAT, S.A. DE C.V. (\"NubTek\") pueden solicitar la cancelación y/o reembolso de servicios contratados a través de la tienda en línea. NubTek busca ofrecer soluciones claras, transparentes y equitativas, respetando los derechos del consumidor conforme a la Ley Federal de Protección al Consumidor.",
+  "principles_text": "Esta política tiene como objetivo establecer las condiciones bajo las cuales los usuarios/clientes de ALENNA TREAT, S.A. DE C.V. (\"Nubtek\") pueden solicitar la cancelación y/o reembolso de servicios contratados a través de la tienda en línea. Nubtek busca ofrecer soluciones claras, transparentes y equitativas, respetando los derechos del consumidor conforme a la Ley Federal de Protección al Consumidor, la supervisión de PROFECO y la naturaleza técnica y personalizada de los servicios digitales ofrecidos.",
   "scope": "Alcance",
-  "scope_text": "La presente política aplica a todas las compras y contrataciones realizadas con NubTek, a través de la tienda en línea, cotización directa o canales oficiales.",
+  "scope_text": "La presente política aplica a todas las compras y contrataciones realizadas con Nubtek, a través de la tienda en línea, cotización directa o canales oficiales.",
   "cancellations": "Cancelaciones y Reembolsos en Servicios",
   "before": "Previo al inicio de la prestación del servicio:",
   "before_text": "El cliente podrá cancelar la contratación sin penalización, siempre y cuando el servicio no haya comenzado a ejecutarse ni se hayan generado costos operativos, licencias, materiales o bloqueos de agenda.",
   "after": "Una vez iniciado el servicio:",
-  "after_text": "No se realizarán reembolsos una vez que la ejecución del servicio haya comenzado o si el servicio ya se ha entregado total o parcialmente. Únicamente se contemplarán reembolsos en los casos en que no sea posible la prestación del servicio por causas imputables a NubTek.",
+  "after_text": "No se realizarán reembolsos una vez que la ejecución del servicio haya comenzado o si el servicio ya se ha entregado total o parcialmente. Únicamente se contemplarán reembolsos en los casos en que no sea posible la prestación del servicio por causas imputables a Nubtek, como imposibilidad técnica o falta de cumplimiento del alcance contratado.",
   "process": "Reembolsos y Procesos",
-  "process_text": "Las solicitudes de reembolso válidas serán evaluadas caso por caso por el equipo de atención a clientes de NubTek. Los reembolsos aprobados se realizarán a través del mismo método de pago utilizado en la compra original, en un plazo de hasta 15 días hábiles a partir de la confirmación.",
+  "process_1": "Las solicitudes de reembolso válidas serán evaluadas caso por caso por el equipo de atención a clientes de Nubtek.",
+  "process_2": "Los reembolsos aprobados se realizarán a través del mismo método de pago utilizado en la compra original (tarjeta de crédito o débito por pasarela de pagos segura).",
+  "process_3": "El procesamiento de reembolsos se realizará en un plazo de hasta 15 días hábiles a partir de la confirmación, y pueden depender de los tiempos establecidos por los bancos y el agregador de pagos.",
   "exclusions": "Exclusiones y Limitaciones",
-  "exclusions_text": "No se procesarán reembolsos por cambio de opinión, errores de compra por parte del cliente, incompatibilidad de requisitos no imputable a NubTek o servicios ya prestados. Los servicios personalizados o paquetes que impliquen la contratación de terceros estarán sujetos a las políticas de los proveedores involucrados.",
+  "exclusions_1": "No se procesarán reembolsos por cambio de opinión, errores de compra por parte del cliente, incompatibilidad de requisitos no imputable a Nubtek o servicios ya prestados.",
+  "exclusions_2": "Los servicios personalizados o paquetes que impliquen la contratación de terceros estarán sujetos a las políticas de los proveedores involucrados, y en ese caso el cliente será informado antes de contratar.",
   "how_to": "Cómo Solicitar Cancelación/Reembolso",
-  "how_to_text": "El cliente deberá enviar una solicitud de cancelación/reembolso a través del formulario de contacto del sitio web o al correo oficial, incluyendo:",
+  "how_to_text": "El cliente deberá enviar una solicitud de cancelación/reembolso a través del formulario de contacto del sitio web o al correo oficial (cuando esté activo), incluyendo:",
   "how_1": "Nombre completo",
   "how_2": "Número de pedido o referencia",
   "how_3": "Descripción clara del motivo",
-  "how_4": "Documentos o evidencias que respalden su caso, si corresponde",
-  "response_time": "El equipo de NubTek responderá en un plazo máximo de 5 días hábiles confirmando la recepción y los siguientes pasos.",
+  "how_4": "Documentos o evidencias que respalden su caso, si corresponde.",
+  "how_response": "El equipo de Nubtek responderá en un plazo máximo de 5 días hábiles confirmando la recepción y los siguientes pasos.",
   "profeco": "Relación con la PROFECO",
-  "profeco_text": "En casos de inconformidad no resuelta, el usuario tiene derecho a acudir a la PROFECO (www.gob.mx/profeco) para orientación o presentación de reclamaciones. NubTek está comprometida a colaborar plenamente conforme a sus obligaciones legales.",
+  "profeco_text": "En casos de inconformidad no resuelta, el usuario tiene derecho a acudir a la PROFECO (www.gob.mx/profeco) para orientación o presentación de reclamaciones. Nubtek está comprometida a colaborar plenamente conforme a sus obligaciones legales.",
   "modifications": "Modificaciones",
-  "modifications_text": "NubTek puede actualizar esta política para ajustarla a cambios operativos, regulatorios o tecnológicos. Cualquier modificación será comunicada oportunamente a través del sitio web y aplicará a transacciones futuras.",
+  "modifications_text": "Nubtek puede actualizar esta política para ajustarla a cambios operativos, regulatorios o tecnológicos; cualquier modificación será comunicada oportunamente a través del sitio web y aplicará a transacciones futuras.",
   "contact_refund": "Contacto",
-  "contact_refund_text": "Para cualquier aclaración o solicitud asociada a esta política:",
-  "form_text": "Formulario de contacto a través del sitio web oficial."
+  "contact_refund_email": "Correo: soluciones@nubtek.com.mx",
+  "contact_refund_form": "Formulario de contacto a través del sitio web oficial."
 },
 "products": {
   "adm-1": { "name": "Organización de archivos digitales", "desc": "Google Drive, Dropbox, etc." },
@@ -322,6 +351,20 @@
   "taa-4": { "name": "Facturación y reportes (Intermedio)", "desc": "Seguimiento de pagos, reportes" },
   "taa-5": { "name": "Reservaciones y logística (Básico)", "desc": "Viajes, alojamientos" },
   "taa-6": { "name": "Facturación y reportes (Básico)", "desc": "Seguimiento de pagos, reportes" }
+},
+"personalizado": {
+  "title": "Servicio exclusivo",
+  "badge": "COTIZACIÓN",
+  "hero_title": "¿Buscas una solución a tu medida?",
+  "hero_desc": "Cuéntanos qué necesitas y diseñaremos un plan personalizado para tu proyecto.",
+  "form_title": "Servicio personalizado",
+  "form_desc": "Completa el formulario y recibe una cotización adaptada a tus necesidades.",
+  "quote_id": "ID de Cotización",
+  "amount": "Monto a Pagar (MXN)",
+  "details": "Detalles del servicio",
+  "warning": "IMPORTANTE: El importe final incluirá el 16% de IVA.",
+  "pay": "Pagar",
+  "success": "¡Cotización enviada con éxito! Te contactaremos pronto."
 }
 
 }

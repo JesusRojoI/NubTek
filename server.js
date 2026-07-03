@@ -108,18 +108,49 @@ async function etominRequest(path, body) {
 // ============================================
 
 // Enviar correo
+// ============================================
+// RUTA: Enviar correo
+// ============================================
 app.post('/api/send-email', async (req, res) => {
   try {
     const { to, subject, html } = req.body;
+    const recipients = Array.isArray(to) ? to : [to];
+    
+    console.log('📧 ========================================');
+    console.log('📧 NUEVO ENVÍO DE CORREO');
+    console.log('📧 Para:', recipients.join(', '));
+    console.log('📧 Asunto:', subject);
+    console.log('📧 Remitente:', process.env.EMAIL_FROM || 'NubTek <onboarding@resend.dev>');
+    console.log('📧 ========================================');
+
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_FROM || 'NubTek <onboarding@resend.dev>',
-      to: Array.isArray(to) ? to : [to],
+      to: recipients,
       subject,
       html
     });
-    if (error) return res.status(400).json({ error: error.message });
-    console.log('✅ Correo enviado:', data?.id);
-    res.json({ success: true, data });
+
+    if (error) {
+      console.error('❌ ERROR AL ENVIAR:', error.message);
+      console.error('❌ Destinatario:', recipients.join(', '));
+      return res.status(400).json({ error: error.message });
+    }
+
+    console.log('✅ CORREO ENVIADO EXITOSAMENTE');
+    console.log('✅ ID:', data?.id);
+    console.log('✅ Para:', recipients.join(', '));
+    console.log('📧 ========================================\n');
+
+    res.json({ 
+      success: true, 
+      data,
+      receipt: {
+        id: data?.id,
+        to: recipients,
+        subject,
+        timestamp: new Date().toISOString()
+      }
+    });
   } catch (err) {
     console.error('❌ Error correo:', err);
     res.status(500).json({ error: err.message });
@@ -158,7 +189,7 @@ app.post('/api/process-payment', async (req, res) => {
         expirationYear: expYear,
         expirationMonth: expMonth
       },
-       redirectUrl: (process.env.APP_URL || 'http://localhost:3003') + '/compra-exitosa'
+        redirectUrl: (process.env.APP_URL || 'http://localhost:4173') + '/compra-exitosa'
     });
 
     console.log('📋 Resultado:', JSON.stringify(result));

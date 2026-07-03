@@ -37,7 +37,7 @@ const Checkout = () => {
     }
 
     try {
-      const paymentRes = await fetch('/api/process-payment', {
+      const paymentRes = await fetch('api/process-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
