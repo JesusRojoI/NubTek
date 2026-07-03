@@ -3,19 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { 
   FiBriefcase, FiHeadphones, FiMonitor, FiDollarSign, 
   FiTarget, FiTruck, FiGlobe, FiAward, FiSmile, FiUsers,
-  FiArrowRight, FiCheckCircle, FiStar, FiClock, FiZap,
-  FiBarChart2, FiTrendingUp, FiShield, FiPhone
+  FiArrowRight, FiCheckCircle, FiTrendingUp, FiShield, FiPhone,
+  FiBarChart2
 } from 'react-icons/fi';
 
 const Home = () => {
   const { t } = useTranslation();
-
-  const stats = [
-    { number: '+10', icon: FiStar },
-    { number: '+500', icon: FiUsers },
-    { number: '24/7', icon: FiClock },
-    { number: '+50', icon: FiZap }
-  ];
 
   const services = [
     { icon: FiBriefcase, color: '#2563eb' },
@@ -136,26 +129,6 @@ const Home = () => {
               }}>
                 <FiPhone /> {t('home.hero.cta_contact')}
               </Link>
-            </div>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '20px',
-              paddingTop: '30px',
-              borderTop: '1px solid rgba(0,0,0,0.08)'
-            }}>
-              {stats.map((stat, idx) => (
-                <div key={idx} style={{ textAlign: 'center' }}>
-                  <stat.icon style={{ fontSize: '1.3rem', color: '#2563eb', marginBottom: '8px' }} />
-                  <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#0f172a', marginBottom: '4px' }}>
-                    {stat.number}
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>
-                    {t(`home.stats.${['experience', 'clients', 'support', 'services'][idx]}`)}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -326,28 +299,16 @@ const Home = () => {
 
           <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', marginTop: '50px', flexWrap: 'wrap' }}>
             <Link to="/personalizado" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '14px 28px',
-              background: '#2563eb',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '12px',
-              fontWeight: '600'
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              padding: '14px 28px', background: '#2563eb', color: 'white',
+              textDecoration: 'none', borderRadius: '12px', fontWeight: '600'
             }}>
               {t('home.services.cta_request')} <FiArrowRight />
             </Link>
             <Link to="/planes" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '14px 28px',
-              background: 'white',
-              color: '#2563eb',
-              textDecoration: 'none',
-              borderRadius: '12px',
-              fontWeight: '600',
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              padding: '14px 28px', background: 'white', color: '#2563eb',
+              textDecoration: 'none', borderRadius: '12px', fontWeight: '600',
               border: '2px solid #2563eb'
             }}>
               {t('home.services.cta_plans')}
@@ -364,15 +325,10 @@ const Home = () => {
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '60px' }}>
             <span style={{
-              display: 'inline-block',
-              padding: '8px 20px',
-              background: 'rgba(37,99,235,0.1)',
-              color: '#2563eb',
-              borderRadius: '50px',
-              fontWeight: '600',
-              fontSize: '0.85rem',
-              letterSpacing: '1px',
-              marginBottom: '20px'
+              display: 'inline-block', padding: '8px 20px',
+              background: 'rgba(37,99,235,0.1)', color: '#2563eb',
+              borderRadius: '50px', fontWeight: '600', fontSize: '0.85rem',
+              letterSpacing: '1px', marginBottom: '20px'
             }}>
               {t('home.why_us.badge')}
             </span>
@@ -385,18 +341,12 @@ const Home = () => {
           </div>
 
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '25px'
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '25px'
           }}>
             {features.map((feature, idx) => (
               <div key={idx} style={{
-                background: 'white',
-                padding: '35px 25px',
-                borderRadius: '20px',
-                textAlign: 'center',
-                transition: 'all 0.3s',
-                border: '1px solid #f1f5f9'
+                background: 'white', padding: '35px 25px', borderRadius: '20px',
+                textAlign: 'center', transition: 'all 0.3s', border: '1px solid #f1f5f9'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-5px)';
@@ -407,15 +357,10 @@ const Home = () => {
                 e.currentTarget.style.boxShadow = 'none';
               }}>
                 <div style={{
-                  width: '65px',
-                  height: '65px',
-                  borderRadius: '16px',
+                  width: '65px', height: '65px', borderRadius: '16px',
                   background: 'linear-gradient(135deg, #2563eb, #06b6d4)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto 20px',
-                  color: 'white'
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 20px', color: 'white'
                 }}>
                   <feature.icon size={28} />
                 </div>
@@ -431,15 +376,9 @@ const Home = () => {
 
           <div style={{ textAlign: 'center', marginTop: '50px' }}>
             <Link to="/contacto" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '14px 30px',
-              background: '#2563eb',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '12px',
-              fontWeight: '600'
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              padding: '14px 30px', background: '#2563eb', color: 'white',
+              textDecoration: 'none', borderRadius: '12px', fontWeight: '600'
             }}>
               {t('about.cta')} <FiArrowRight />
             </Link>
@@ -451,8 +390,7 @@ const Home = () => {
       <section style={{
         padding: '100px 20px',
         background: 'linear-gradient(135deg, #0f172a, #1e3a5f)',
-        textAlign: 'center',
-        color: 'white'
+        textAlign: 'center', color: 'white'
       }}>
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
           <FiBarChart2 size={50} style={{ marginBottom: '25px', opacity: 0.8 }} />
@@ -464,22 +402,14 @@ const Home = () => {
           </p>
           <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/personalizado" style={{
-              padding: '14px 30px',
-              background: '#2563eb',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '12px',
-              fontWeight: '600'
+              padding: '14px 30px', background: '#2563eb', color: 'white',
+              textDecoration: 'none', borderRadius: '12px', fontWeight: '600'
             }}>
               {t('home.cta_section.cta')}
             </Link>
             <Link to="/planes" style={{
-              padding: '14px 30px',
-              background: 'transparent',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '12px',
-              fontWeight: '600',
+              padding: '14px 30px', background: 'transparent', color: 'white',
+              textDecoration: 'none', borderRadius: '12px', fontWeight: '600',
               border: '2px solid rgba(255,255,255,0.3)'
             }}>
               {t('home.cta_section.cta_plans')}
