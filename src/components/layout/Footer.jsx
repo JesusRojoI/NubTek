@@ -57,8 +57,11 @@ const Footer = () => {
         <div>
           <h4 style={{ color: 'white', marginBottom: '15px' }}>{t('footer.contact_title')}</h4>
           <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: '1.8' }}>
-            {t('footer.address')}
-          </p>
+  {t('footer.address_line1')}<br />
+  {t('footer.address_line2')}<br />
+  {t('footer.address_line3')}<br />
+  {t('footer.address_line4')}
+</p>
           
           <p style={{ color: '#94a3b8', marginTop: '10px' }}>
             📞 +52 1 55 5920 2774

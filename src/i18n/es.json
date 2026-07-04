@@ -92,6 +92,12 @@
     "need_custom_desc": "Si no encuentras exactamente lo que buscas, podemos diseñar un plan a tu medida."
   },
   "about": {
+     "features": {
+    "global": { "title": "Global Coverage", "desc": "Borderless digital support, adapted to your time zone and work pace." },
+    "experience": { "title": "Proven Experience", "desc": "Over a decade helping companies and professionals optimize their processes." },
+    "efficiency": { "title": "Efficient Management", "desc": "We simplify your daily tasks and reduce operational burden." },
+    "team": { "title": "Reliable Team", "desc": "We have specialists in management, customer service and digital marketing." }
+  },
     "title": "Nosotros",
     "badge": "BIENVENIDO A NUBTEK",
     "subtitle": "Soporte Inteligente y Soluciones Flexibles para Tu Negocio.",
@@ -183,6 +189,10 @@
     "services": "Ver más servicios"
   },
   "footer": {
+    "address_line1": "Avenida Homero, No. 203, Piso 8, int. 804,",
+  "address_line2": "Colonia Polanco V Sección,",
+  "address_line3": "C.P. 11560, alcaldía Miguel Hidalgo,",
+  "address_line4": "Entidad Federativa Ciudad de México",
     "about": "En NubTek ofrecemos soluciones digitales inteligentes para optimizar la gestión, comunicación y presencia de tu negocio.",
     "links": "Enlaces Útiles",
     "terms": "Términos y Condiciones",

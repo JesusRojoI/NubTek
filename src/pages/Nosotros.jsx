@@ -1,22 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
-  FiGlobe, FiAward, FiSmile, FiUsers, 
-  FiArrowRight, FiTarget, FiTrendingUp, FiShield 
+  FiSmile, FiArrowRight, FiTarget, FiShield 
 } from 'react-icons/fi';
 
 const Nosotros = () => {
   const { t } = useTranslation();
-
-  const features = [
-    { icon: FiGlobe, key: 0 },
-    { icon: FiAward, key: 1 },
-    { icon: FiTrendingUp, key: 2 },
-    { icon: FiUsers, key: 3 }
-  ];
-
-  const featureTitles = ['global', 'experience', 'efficiency', 'team'];
-  const featureDescriptions = ['global_desc', 'experience_desc', 'efficiency_desc', 'team_desc'];
 
   const values = [
     { icon: FiTarget, titleKey: 'mission', descKey: 'mission_desc' },
@@ -74,7 +63,7 @@ const Nosotros = () => {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Misión / Visión / Valores */}
       <section style={{
         padding: '100px 20px', background: 'white',
         marginTop: '-30px', position: 'relative', zIndex: 2,
@@ -98,34 +87,6 @@ const Nosotros = () => {
             </p>
           </div>
 
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '25px', marginBottom: '80px'
-          }}>
-            {features.map((feature, idx) => (
-              <div key={idx} style={{
-                background: 'white', padding: '35px 25px', borderRadius: '20px',
-                textAlign: 'center', border: '1px solid #f1f5f9'
-              }}>
-                <div style={{
-                  width: '70px', height: '70px', borderRadius: '18px',
-                  background: 'linear-gradient(135deg, #2563eb, #06b6d4)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  margin: '0 auto 20px', color: 'white'
-                }}>
-                  <feature.icon size={30} />
-                </div>
-                <h3 style={{ fontSize: '1.2rem', color: '#0f172a', marginBottom: '10px' }}>
-                  {t(`about.features.${featureTitles[idx]}.title`)}
-                </h3>
-                <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.7', margin: 0 }}>
-                  {t(`about.features.${featureTitles[idx]}.desc`)}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Misión / Visión / Valores */}
           <div style={{
             display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '25px', marginBottom: '60px'
