@@ -29,12 +29,72 @@ const Checkout = () => {
     setLoading(true);
     setError('');
 
-    if (!formData.firstName || !formData.email || !formData.address) {
-      setError(t('checkout.error_fields')); setLoading(false); return;
-    }
-    if (!formData.cardNumber || !formData.cardName || !formData.cardExpiry || !formData.cardCvc) {
-      setError(t('checkout.error_card')); setLoading(false); return;
-    }
+    // Validar campos de facturación
+if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.city || !formData.zip) {
+  setError(t('checkout.error_fields'));
+  setLoading(false);
+  return;
+}
+
+// Validar email
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(formData.email)) {
+  setError(t('checkout.error_email'));
+  setLoading(false);
+  return;
+}
+
+// Validar teléfono (si se ingresó)
+if (formData.phone && formData.phone.replace(/\D/g, '').length < 10) {
+  setError(t('checkout.error_phone'));
+  setLoading(false);
+  return;
+}
+
+// Validar código postal (5 dígitos)
+if (!/^\d{5}$/.test(formData.zip)) {
+  setError(t('checkout.error_zip'));
+  setLoading(false);
+  return;
+}
+
+// Validar datos de tarjeta
+if (!formData.cardNumber || !formData.cardName || !formData.cardExpiry || !formData.cardCvc) {
+  setError(t('checkout.error_card'));
+  setLoading(false);
+  return;
+}
+
+// Validar número de tarjeta (16 dígitos)
+if (formData.cardNumber.replace(/\s/g, '').length < 16) {
+  setError(t('checkout.error_card_number'));
+  setLoading(false);
+  return;
+}
+
+// Validar CVC (3-4 dígitos)
+if (!/^\d{3,4}$/.test(formData.cardCvc)) {
+  setError(t('checkout.error_cvc'));
+  setLoading(false);
+  return;
+}
+
+// Validar fecha de expiración (MM/AA)
+const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+if (!expiryRegex.test(formData.cardExpiry)) {
+  setError(t('checkout.error_expiry'));
+  setLoading(false);
+  return;
+}
+
+// Validar que la tarjeta no esté vencida
+const [expMonth, expYear] = formData.cardExpiry.split('/');
+const expiryDate = new Date(2000 + parseInt(expYear), parseInt(expMonth), 0);
+if (expiryDate < new Date()) {
+  setError(t('checkout.error_expired'));
+  setLoading(false);
+  return;
+}
 
     try {  //QUITAR LOCALHOST PARA PRODUCCION...
       const paymentRes = await fetch('/api/process-payment', {

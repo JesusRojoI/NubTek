@@ -180,6 +180,13 @@
 
   },
   "checkout": {
+    "error_email": "Enter a valid email address.",
+"error_phone": "Enter a valid phone number (10 digits).",
+"error_zip": "Enter a valid zip code (5 digits).",
+"error_card_number": "Enter a valid card number (16 digits).",
+"error_cvc": "Enter a valid CVC (3-4 digits).",
+"error_expiry": "Enter a valid expiration date (MM/YY).",
+"error_expired": "The card is expired.",
       "secure_payment": "Secure payment with",
     "title": "Checkout",
     "billing": "Billing Details",
@@ -398,5 +405,8 @@
   "pay": "Pay",
   "success": "Quote sent successfully! We will contact you soon."
 },
-"categories_label": "Categories"
+"categories_label": "Categories",
+"product_detail": {
+  "hourly_service": "Hourly service. Price before"
+}
 }

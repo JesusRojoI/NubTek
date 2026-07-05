@@ -131,7 +131,7 @@ const ProductDetail = () => {
               </p>
               {product.id.startsWith('taa-') && (
   <p style={{ color: '#64748b', fontSize: '0.85rem', marginBottom: '25px' }}>
-    Servicio por hora. Precio antes de {t('cart.tax')}.
+    {t('product_detail.hourly_service')} {t('cart.tax')}.
   </p>
 )}
               {/* Cantidad */}

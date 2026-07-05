@@ -174,6 +174,13 @@
 
   },
   "checkout": {
+    "error_email": "Ingresa un correo electrónico válido.",
+"error_phone": "Ingresa un teléfono válido (10 dígitos).",
+"error_zip": "Ingresa un código postal válido (5 dígitos).",
+"error_card_number": "Ingresa un número de tarjeta válido (16 dígitos).",
+"error_cvc": "Ingresa un CVC válido (3-4 dígitos).",
+"error_expiry": "Ingresa una fecha de vencimiento válida (MM/AA).",
+"error_expired": "La tarjeta está vencida.",
       "secure_payment": "Pagos seguros con",
     "title": "Finalizar compra",
     "billing": "Detalles de facturación",
@@ -392,5 +399,8 @@
   "pay": "Pagar",
   "success": "¡Cotización enviada con éxito! Te contactaremos pronto."
 },
-"categories_label": "Categorías"
+"categories_label": "Categorías",
+"product_detail": {
+  "hourly_service": "Servicio por hora. Precio antes de"
+}
 }
