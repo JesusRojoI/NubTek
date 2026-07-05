@@ -9,6 +9,22 @@
     "checkout": "Checkout"
   },
   "home": {
+    "unique": {
+  "title": "What makes us unique",
+  "description": "We transform your daily life with solutions that allow you to work better, not more. We manage your digital processes with order, focus and attention to detail, freeing up your time so you can concentrate on important decisions. Every action is designed to bring real efficiency, clear communication and a deeply human experience.",
+  "admin": "Stress-free administrative management",
+  "admin_desc": "We organize agendas, emails, digital files and databases so everything flows with precision and without setbacks.",
+  "marketing": "Marketing and content support",
+  "marketing_desc": "We create and schedule social media posts, write emails and newsletters, and design images and banners with style and coherence.",
+  "support": "Impeccable customer service",
+  "support_desc": "We respond to messages, filter calls, manage contacts and handle complaints quickly and professionally. Your brand will always be well represented.",
+  "projects": "Project and event coordination",
+  "projects_desc": "We supervise tasks, manage tools like Trello or Asana, and support meetings, webinars or virtual events with total efficiency.",
+  "advanced": "Advanced administrative tasks",
+  "advanced_desc": "Billing, reconciliation, financial reports, travel coordination and complex logistics: we handle the detailed and complicated so you can just make decisions.",
+  "scalable": "Scalable and adaptable services",
+  "scalable_desc": "From basic tasks to complex projects, each service adjusts to your needs, whether basic, intermediate or advanced level."
+},
     "hero": {
       "badge": "Digital management with a human approach",
       "title": "Real Efficiency",
@@ -381,5 +397,6 @@
   "warning": "IMPORTANT: The final amount includes 16% VAT.",
   "pay": "Pay",
   "success": "Quote sent successfully! We will contact you soon."
-}
+},
+"categories_label": "Categories"
 }

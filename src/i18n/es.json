@@ -9,6 +9,22 @@
     "checkout": "Finalizar compra"
   },
   "home": {
+    "unique": {
+  "title": "Lo que nos diferencia",
+  "description": "Transformamos tu operación diaria con soluciones que te permiten trabajar de forma más inteligente. Gestionamos tus procesos digitales con orden, atención al detalle y enfoque estratégico, liberando tu tiempo para que te concentres en lo que realmente importa. Cada una de nuestras acciones está pensada para brindarte eficiencia real, comunicación clara y una experiencia auténticamente humana.",
+  "admin": "Administración sin complicaciones",
+  "admin_desc": "Coordinamos agendas, correos, archivos digitales y bases de datos para que cada proceso fluya con precisión y sin contratiempos.",
+  "marketing": "Marketing digital y contenido",
+  "marketing_desc": "Diseñamos y programamos contenido para redes sociales, redactamos newsletters y correos, y creamos imágenes y banners con identidad y coherencia visual.",
+  "support": "Atención al cliente de primer nivel",
+  "support_desc": "Gestionamos mensajes, filtramos llamadas, administramos contactos y resolvemos quejas con rapidez y profesionalismo, asegurando que tu marca siempre esté bien representada.",
+  "projects": "Coordinación de proyectos y eventos",
+  "projects_desc": "Supervisamos tareas, administramos plataformas como Trello o Asana, y damos soporte en reuniones, webinars y eventos virtuales con eficacia total.",
+  "advanced": "Tareas administrativas avanzadas",
+  "advanced_desc": "Facturación, conciliación bancaria, reportes financieros, logística de viajes y mucho más. Nos encargamos de lo complejo para que tú te enfoques en decidir.",
+  "scalable": "Servicios flexibles y escalables",
+  "scalable_desc": "Desde actividades básicas hasta proyectos de alta complejidad, nuestros servicios se adaptan a tus necesidades en cualquier nivel: básico, intermedio o avanzado."
+},
     "hero": {
       "badge": "Gestión digital con enfoque humano",
       "title": "Eficiencia real",
@@ -375,6 +391,6 @@
   "warning": "IMPORTANTE: El importe final incluirá el 16% de IVA.",
   "pay": "Pagar",
   "success": "¡Cotización enviada con éxito! Te contactaremos pronto."
-}
-
+},
+"categories_label": "Categorías"
 }

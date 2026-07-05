@@ -36,7 +36,7 @@ const Checkout = () => {
       setError(t('checkout.error_card')); setLoading(false); return;
     }
 
-    try {
+    try {  //QUITAR LOCALHOST PARA PRODUCCION...
       const paymentRes = await fetch('/api/process-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

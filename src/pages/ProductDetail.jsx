@@ -60,7 +60,7 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
       addToCart({
-        id: product.id + '-' + Date.now() + '-' + i,
+        id: product.id + (i > 0 ? '-' + i : ''),
         name: t(`products.${product.id}.name`, product.defaultName),
         price: product.price,
         emoji: iconMap[product.icon] || '📦',
@@ -68,6 +68,8 @@ const ProductDetail = () => {
       });
     }
   };
+
+  const imageUrl = productImages[product.id] || categoryImages[category];
 
   return (
     <div>
@@ -90,7 +92,7 @@ const ProductDetail = () => {
 
       {/* Product Detail */}
       <section style={{ padding: '40px 20px 80px', background: '#f8fafc', marginTop: '-30px', position: 'relative', zIndex: 2 }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Link to={`/productos/${category}`} style={{
             display: 'inline-flex', alignItems: 'center', gap: '6px',
             color: '#2563eb', textDecoration: 'none', fontWeight: '500',
@@ -101,14 +103,19 @@ const ProductDetail = () => {
 
           <div style={{
             background: 'white', borderRadius: '20px', overflow: 'hidden',
-            boxShadow: '0 4px 30px rgba(0,0,0,0.08)'
+            boxShadow: '0 4px 30px rgba(0,0,0,0.08)',
+            display: 'flex', flexWrap: 'wrap'
           }}>
+            {/* Imagen a la izquierda */}
             <div style={{
-              width: '100%', height: '350px',
-              backgroundImage: `url(${productImages[product.id] || categoryImages[category]})`,              backgroundSize: 'cover', backgroundPosition: 'center'
+              width: '350px', minHeight: '350px',
+              backgroundImage: `url(${imageUrl})`,
+              backgroundSize: 'cover', backgroundPosition: 'center',
+              flexShrink: 0
             }}></div>
 
-            <div style={{ padding: '40px' }}>
+            {/* Contenido a la derecha */}
+            <div style={{ flex: 1, padding: '40px', minWidth: '300px' }}>
               <h1 style={{ fontSize: '1.8rem', color: '#0f172a', marginBottom: '10px' }}>
                 {t(`products.${product.id}.name`, product.defaultName)}
               </h1>
@@ -122,8 +129,12 @@ const ProductDetail = () => {
               <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '10px' }}>
                 +{t('cart.tax').replace(' (16%)', '')}
               </p>
-             
-
+              {product.id.startsWith('taa-') && (
+  <p style={{ color: '#64748b', fontSize: '0.85rem', marginBottom: '25px' }}>
+    Servicio por hora. Precio antes de {t('cart.tax')}.
+  </p>
+)}
+              {/* Cantidad */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
                 <span style={{ fontWeight: '600', color: '#334155' }}>{t('cart.quantity')}:</span>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -147,6 +158,7 @@ const ProductDetail = () => {
                 </div>
               </div>
 
+              {/* Botón */}
               {isInCart ? (
                 <Link to="/carrito" style={{
                   display: 'inline-flex', alignItems: 'center', gap: '8px',
@@ -154,7 +166,7 @@ const ProductDetail = () => {
                   textDecoration: 'none', borderRadius: '12px', fontWeight: '600',
                   fontSize: '1rem', width: '100%', justifyContent: 'center', boxSizing: 'border-box'
                 }}>
-                  <FiCheck /> {t('cart.in_cart')}
+                  <FiCheck /> {t('cart.checkout')}
                 </Link>
               ) : (
                 <button onClick={handleAddToCart} style={{
@@ -168,6 +180,7 @@ const ProductDetail = () => {
                 </button>
               )}
 
+              {/* SKU y Categoría */}
               <div style={{ marginTop: '25px', paddingTop: '25px', borderTop: '1px solid #e2e8f0' }}>
                 <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '5px' }}>
                   <FiTag style={{ marginRight: '5px', verticalAlign: 'middle' }} />
