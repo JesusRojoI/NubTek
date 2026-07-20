@@ -52,7 +52,7 @@ const Contacto = () => {
   const contactInfo = [
     { icon: '📍', title: t('contact.address'), content: t('contact.address_text') },
     { icon: '📧', title: t('contact.email_label'), content: 'soluciones@nubtek.com.mx' },
-    { icon: '📞', title: t('contact.phone_label'), content: '+52 1 55 5920 2774' },
+    { icon: '📞', title: t('contact.phone_label'), content: '+52 1 55 2155 2072' },
     { icon: '🕐', title: t('contact.hours'), content: t('contact.hours_text') }
   ];
 

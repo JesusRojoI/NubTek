@@ -64,7 +64,7 @@ const Footer = () => {
 </p>
           
           <p style={{ color: '#94a3b8', marginTop: '10px' }}>
-            📞 +52 1 55 5920 2774
+            📞 +52 1 55 2155 2072
           </p>
           <p style={{ color: '#94a3b8' }}>
             ✉️ soluciones@nubtek.com.mx
