@@ -21,68 +21,26 @@ app.use(express.json());
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ============================================
-// Obtener token de Etomin automáticamente
+// BLOQUE DE INTEGRACIÓN CON OCTANO
 // ============================================
-async function getEtominToken() {
-  return new Promise((resolve, reject) => {
-    const data = JSON.stringify({
-      email: process.env.ETOMIN_USER,
-      password: process.env.ETOMIN_PASSWORD
-    });
 
-    const options = {
-      hostname: 'pagos.etomin.com',
-      path: '/api/v1/signin',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json',
-        'Content-Length': Buffer.byteLength(data)
-      }
-    };
-
-    const req = https.request(options, (res) => {
-      let responseData = '';
-      res.on('data', (chunk) => { responseData += chunk; });
-      res.on('end', () => {
-        try {
-          const result = JSON.parse(responseData);
-          if (result.authToken) {
-            console.log('✅ Token Etomin obtenido');
-            resolve(result.authToken);
-          } else {
-            reject(new Error('No se recibió token de Etomin'));
-          }
-        } catch {
-          reject(new Error('Respuesta inválida de Etomin: ' + responseData));
-        }
-      });
-    });
-
-    req.on('error', (err) => reject(err));
-    req.write(data);
-    req.end();
-  });
-}
-
-// ============================================
-// Petición a Etomin
-// ============================================
-async function etominRequest(path, body) {
-  const token = await getEtominToken();
-
+/**
+ * Petición HTTPS genérica a la API de Octano
+ */
+async function octanoRequest(path, body, token = null) {
   return new Promise((resolve, reject) => {
     const data = JSON.stringify(body);
+
     const options = {
-      hostname: 'pagos.etomin.com',
+      hostname: 'pagos.octanopayments.com',
       path: '/api/v1' + path,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
-        'Authorization': 'Bearer ' + token,
-        'Content-Length': Buffer.byteLength(data)
-      }
+        'Content-Length': Buffer.byteLength(data),
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
     };
 
     const req = https.request(options, (res) => {
@@ -92,25 +50,123 @@ async function etominRequest(path, body) {
         try {
           resolve(JSON.parse(responseData));
         } catch {
-          resolve({ error: true, raw: responseData });
+          reject(new Error(`Error en la solicitud a Octano: ${responseData}`));
         }
       });
     });
 
-    req.on('error', (err) => reject(err));
+    req.on('error', (err) => {
+      reject(err);
+    });
+
     req.write(data);
     req.end();
   });
 }
+
+// Token en caché para no autenticar en cada petición
+let octanoAuthToken = null;
+let octanoTokenExpiry = 0;
+
+/**
+ * Obtiene (o reutiliza) el token de autenticación de Octano
+ */
+async function getOctanoToken() {
+  if (octanoAuthToken && Date.now() < octanoTokenExpiry) {
+    return octanoAuthToken;
+  }
+
+  console.log('🔐 Autenticando con Octano...');
+  const authRes = await octanoRequest('/signin', {
+    email: process.env.OCTANO_EMAIL,
+    password: process.env.OCTANO_PASSWORD,
+  });
+
+  const authToken = authRes?.authToken;
+  if (!authToken) {
+    throw new Error('No se pudo obtener el token de Octano.');
+  }
+
+  octanoAuthToken = authToken;
+  // El token suele durar 24 horas, lo cacheamos por 23 para curarnos en salud
+  octanoTokenExpiry = Date.now() + 23 * 60 * 60 * 1000;
+  console.log('✅ Token Octano obtenido');
+  return authToken;
+}
+
+/**
+ * Procesa un pago completo con Octano:
+ * 1. Obtiene token de autenticación.
+ * 2. Tokeniza la tarjeta.
+ * 3. Crea la venta.
+ */
+async function processOctanoPayment(paymentData) {
+  try {
+    // 1. Obtener token de autenticación
+    const token = await getOctanoToken();
+
+    // 2. Tokenizar tarjeta
+    console.log('🪪 Tokenizando tarjeta...');
+    const tokenizeRes = await octanoRequest('/card/tokenizer', {
+      cardData: {
+        cardNumber: paymentData.cardNumber.replace(/\s/g, ''),
+        cardholderName: paymentData.cardName,
+        expirationYear: paymentData.expYear,
+        expirationMonth: paymentData.expMonth,
+      },
+    }, token);
+    const cardToken = tokenizeRes?.cardNumberToken;
+
+    if (!cardToken) {
+      throw new Error('No se pudo tokenizar la tarjeta.');
+    }
+    console.log('✅ Tarjeta tokenizada');
+
+    // 3. Crear la venta
+    console.log('💰 Procesando venta...');
+    const saleRes = await octanoRequest('/sale', {
+      amount: paymentData.amount,
+      currency: '484', // MXN
+      reference: paymentData.reference,
+      customerInformation: {
+        firstName: paymentData.name || 'Cliente',
+        lastName: paymentData.lastName || 'NubTek',
+        email: paymentData.email || 'cliente@test.com',
+        phone1: paymentData.phone || '5544332211',
+        address1: paymentData.address || 'Sin dirección',
+        city: paymentData.city || 'Ciudad de México',
+        state: paymentData.city || 'Ciudad de México',
+        postalCode: paymentData.zip || '12345',
+        country: 'MX',
+        ip: '127.0.0.1',
+      },
+      cardData: {
+        cardNumberToken: cardToken,
+        cvv: paymentData.cardCvc,
+      },
+    }, token);
+
+    if (saleRes.status === 'APPROVED') {
+      console.log('✅ Pago Octano aprobado:', saleRes.orderId);
+      return { success: true, data: saleRes };
+    } else {
+      throw new Error(saleRes.responseMessage || 'Transacción rechazada por Octano.');
+    }
+  } catch (error) {
+    console.error('❌ Error en pasarela Octano:', error.message);
+    // Devolvemos el error de forma estructurada
+    return { success: false, error: error.message || 'Error al procesar el pago.' };
+  }
+}
+// ============================================
+// FIN DEL BLOQUE DE OCTANO
+// ============================================
 
 // ============================================
 // RUTAS API
 // ============================================
 
 // Enviar correo
-// ============================================
-// RUTA: Enviar correo
-// ============================================
 app.post('/api/send-email', async (req, res) => {
   try {
     const { to, subject, html } = req.body;
@@ -157,49 +213,35 @@ app.post('/api/send-email', async (req, res) => {
   }
 });
 
-// Procesar pago
+// Procesar pago con OCTANO
 app.post('/api/process-payment', async (req, res) => {
   try {
     const { amount, cardNumber, cardName, cardExpiry, cardCvc, email, name, lastName, phone, address, city, zip } = req.body;
     const [expMonth, expYear] = cardExpiry.split('/');
-    const reference = 'FB-' + Date.now();
 
-    console.log('💳 Procesando pago por $' + amount + ' MXN...');
-
-    const result = await etominRequest('/sale', {
+    const result = await processOctanoPayment({
       amount: Math.round(amount),
-      currency: '484',
-      reference: reference,
-      customerInformation: {
-        firstName: name || 'Cliente',
-        lastName: lastName || 'NubTek',
-        email: email || 'cliente@test.com',
-        phone1: phone || '5544332211',
-        city: city || 'Ciudad de Mexico',
-        address1: address || 'Direccion',
-        postalCode: zip || '12345',
-        state: city || 'CDMX',
-        country: 'MX',
-        ip: '192.168.1.1'
-      },
-      cardData: {
-        cardNumber: cardNumber.replace(/\s/g, ''),
-        cvv: cardCvc,
-        cardholderName: cardName,
-        expirationYear: expYear,
-        expirationMonth: expMonth
-      },
-        redirectUrl: (process.env.APP_URL || 'http://localhost:4173') + '/compra-exitosa'
+      cardNumber,
+      cardName,
+      expMonth,
+      expYear,
+      cardCvc,
+      email,
+      name,
+      lastName,
+      phone,
+      address,
+      city,
+      zip,
+      reference: `NUBTEK-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
     });
 
-    console.log('📋 Resultado:', JSON.stringify(result));
-
-    if (result.status !== 'APPROVED') {
-      return res.status(400).json({ error: result.responseMessage || 'Pago rechazado' });
+    if (result.success) {
+      console.log('✅ Pago aprobado - Orden:', result.data.orderId);
+      res.json({ success: true, ...result.data });
+    } else {
+      res.status(400).json({ success: false, error: result.error });
     }
-
-    console.log('✅ Pago aprobado - Orden:', result.orderId);
-    res.json({ success: true, orderId: result.orderId, reference: result.reference });
   } catch (err) {
     console.error('❌ Error pago:', err);
     res.status(500).json({ error: err.message });

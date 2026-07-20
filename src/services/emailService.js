@@ -16,6 +16,51 @@ const ADMIN_EMAIL = 'soluciones@nubtek.com.mx';
 // URL de la API (local o producción)
 const API_URL = import.meta.env.PROD ? '' : 'http://localhost:3003';
 
+// 👉 TRADUCCIONES PARA LOS CORREOS
+const emailTranslations = {
+  'adm-1': { en: 'Digital File Organization' },
+  'adm-2': { en: 'Email Organization' },
+  'adm-3': { en: 'Agenda / Appointment Management' },
+  'adm-4': { en: 'Data Entry / Database Maintenance' },
+  'atc-1': { en: 'Complaint Handling / Follow-ups' },
+  'atc-2': { en: 'Call Filtering and Forwarding' },
+  'atc-3': { en: 'Customer Message Response' },
+  'gpc-1': { en: 'Virtual Event / Webinar Organization' },
+  'gpc-2': { en: 'Task Supervision / Project Tracking' },
+  'scm-1': { en: 'Social Media Management (Advanced)' },
+  'scm-2': { en: 'Content Creation (Advanced)' },
+  'scm-3': { en: 'Basic Design / Editing (Advanced)' },
+  'scm-4': { en: 'Social Media Management (Basic)' },
+  'scm-5': { en: 'Basic Design / Editing (Basic)' },
+  'scm-6': { en: 'Content Creation (Basic)' },
+  'taa-1': { en: 'Reservations & Logistics (Advanced)' },
+  'taa-2': { en: 'Billing & Reports (Advanced)' },
+  'taa-3': { en: 'Reservations & Logistics (Intermediate)' },
+  'taa-4': { en: 'Billing & Reports (Intermediate)' },
+  'taa-5': { en: 'Reservations & Logistics (Basic)' },
+  'taa-6': { en: 'Billing & Reports (Basic)' },
+};
+
+// 👉 FUNCIÓN PARA TRADUCIR NOMBRES DE PRODUCTOS
+function translateProductName(name, productId) {
+  const lang = getLanguage();
+  if (lang === 'es') return name; // Si es español, usa el nombre original
+  
+  // Si es inglés, busca en nuestras traducciones
+  if (productId && emailTranslations[productId]) {
+    return emailTranslations[productId].en || name;
+  }
+  
+  // Si no encuentra el ID, intenta buscar por el nombre en español
+  for (const key in emailTranslations) {
+    if (emailTranslations[key].es === name) {
+      return emailTranslations[key].en;
+    }
+  }
+  
+  return name; // Si no encuentra nada, devuelve el nombre original
+}
+
 const templates = {
   // ✅ Confirmación para el CLIENTE (formulario de contacto)
   contactConfirmation: (data) => ({
@@ -128,7 +173,7 @@ const templates = {
       </div>`
   }),
 
-  // 🛒 Confirmación de COMPRA para el CLIENTE
+  // 🛒 Confirmación de COMPRA para el CLIENTE (CORREGIDA)
   purchaseConfirmation: (data) => ({
     subject: t(
       '🛒 ¡Compra confirmada! - NubTek',
@@ -155,14 +200,17 @@ const templates = {
                 <td style="padding:8px;font-weight:600;color:#334155;text-align:right;">${t('Precio', 'Price')}</td>
                 <td style="padding:8px;font-weight:600;color:#334155;text-align:right;">${t('Subtotal', 'Subtotal')}</td>
               </tr>
-              ${data.items.map(item => `
+              ${data.items.map(item => {
+                const translatedName = translateProductName(item.name, item.productId || item.id);
+                return `
                 <tr style="border-bottom:1px solid #e2e8f0;">
-                  <td style="padding:8px;">${item.emoji || ''} ${item.name}</td>
+                  <td style="padding:8px;">${item.emoji || ''} ${translatedName}</td>
                   <td style="padding:8px;text-align:center;">${item.quantity}</td>
                   <td style="padding:8px;text-align:right;">$${item.price.toFixed(2)}</td>
                   <td style="padding:8px;text-align:right;font-weight:600;">$${(item.price * item.quantity).toFixed(2)}</td>
                 </tr>
-              `).join('')}
+                `;
+              }).join('')}
             </table>
           </div>
 
@@ -185,7 +233,7 @@ const templates = {
       </div>`
   }),
 
-  // 🛒 Notificación de COMPRA para el ADMIN
+  // 🛒 Notificación de COMPRA para el ADMIN (CORREGIDA)
   purchaseAdminNotification: (data) => ({
     subject: t(
       `💰 Nueva venta: ${data.name} - $${data.total.toFixed(2)} MXN`,
@@ -207,13 +255,16 @@ const templates = {
                 <td style="padding:8px;font-weight:600;text-align:center;">${t('Cant.', 'Qty.')}</td>
                 <td style="padding:8px;font-weight:600;text-align:right;">${t('Subtotal', 'Subtotal')}</td>
               </tr>
-              ${data.items.map(item => `
+              ${data.items.map(item => {
+                const translatedName = translateProductName(item.name, item.productId || item.id);
+                return `
                 <tr style="border-bottom:1px solid #e2e8f0;">
-                  <td style="padding:8px;">${item.emoji || ''} ${item.name}</td>
+                  <td style="padding:8px;">${item.emoji || ''} ${translatedName}</td>
                   <td style="padding:8px;text-align:center;">${item.quantity}</td>
                   <td style="padding:8px;text-align:right;font-weight:600;">$${(item.price * item.quantity).toFixed(2)}</td>
                 </tr>
-              `).join('')}
+                `;
+              }).join('')}
             </table>
           </div>
 
@@ -232,6 +283,9 @@ export async function sendEmail({ to, template, data }) {
   try {
     const templateData = templates[template](data);
 
+    console.log(`📧 Enviando correo a: ${to}`);
+    console.log(`📧 Plantilla: ${template}`);
+
     const response = await fetch(`${API_URL}/api/send-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -244,17 +298,17 @@ export async function sendEmail({ to, template, data }) {
 
     if (!response.ok) {
       const result = await response.json();
-      console.error('❌ Error:', result);
+      console.error('❌ Error del servidor:', result);
       return { success: false, error: result.error };
     }
 
     const result = await response.json();
-if (result.receipt) {
-  console.log('✅ CORREO ENVIADO - Recibo:', result.receipt);
-}
-return { success: true, data: result };
+    if (result.receipt) {
+      console.log('✅ CORREO ENVIADO - Recibo:', result.receipt);
+    }
+    return { success: true, data: result };
   } catch (error) {
-    console.error('❌ Error:', error);
+    console.error('❌ Error de red:', error);
     return { success: false, error: error.message };
   }
 }
@@ -264,16 +318,37 @@ return { success: true, data: result };
 // ============================================
 
 export async function sendContactEmails(data) {
-  await sendEmail({ to: data.email, template: 'contactConfirmation', data });
-  await sendEmail({ to: ADMIN_EMAIL, template: 'adminNotification', data });
+  console.log('📧 Iniciando envío de correos de contacto...');
+  
+  const clientResult = await sendEmail({ to: data.email, template: 'contactConfirmation', data });
+  console.log('📧 Resultado envío al cliente:', clientResult);
+  
+  const adminResult = await sendEmail({ to: ADMIN_EMAIL, template: 'adminNotification', data });
+  console.log('📧 Resultado envío al admin:', adminResult);
+  
+  return { clientResult, adminResult };
 }
 
 export async function sendCotizacionEmails(data) {
-  await sendEmail({ to: data.email, template: 'cotizacionConfirmation', data: { name: data.name } });
-  await sendEmail({ to: ADMIN_EMAIL, template: 'cotizacionNotification', data });
+  console.log('📧 Iniciando envío de correos de cotización...');
+  
+  const clientResult = await sendEmail({ to: data.email, template: 'cotizacionConfirmation', data: { name: data.name } });
+  console.log('📧 Resultado envío al cliente:', clientResult);
+  
+  const adminResult = await sendEmail({ to: ADMIN_EMAIL, template: 'cotizacionNotification', data });
+  console.log('📧 Resultado envío al admin:', adminResult);
+  
+  return { clientResult, adminResult };
 }
 
 export async function sendPurchaseEmails(data) {
-  await sendEmail({ to: data.email, template: 'purchaseConfirmation', data });
-  await sendEmail({ to: ADMIN_EMAIL, template: 'purchaseAdminNotification', data });
+  console.log('📧 Iniciando envío de correos de compra...');
+  
+  const clientResult = await sendEmail({ to: data.email, template: 'purchaseConfirmation', data });
+  console.log('📧 Resultado envío al cliente:', clientResult);
+  
+  const adminResult = await sendEmail({ to: ADMIN_EMAIL, template: 'purchaseAdminNotification', data });
+  console.log('📧 Resultado envío al admin:', adminResult);
+  
+  return { clientResult, adminResult };
 }

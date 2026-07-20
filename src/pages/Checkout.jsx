@@ -30,101 +30,141 @@ const Checkout = () => {
     setError('');
 
     // Validar campos de facturación
-if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.city || !formData.zip) {
-  setError(t('checkout.error_fields'));
-  setLoading(false);
-  return;
-}
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.city || !formData.zip) {
+      setError(t('checkout.error_fields'));
+      setLoading(false);
+      return;
+    }
 
-// Validar email
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-if (!emailRegex.test(formData.email)) {
-  setError(t('checkout.error_email'));
-  setLoading(false);
-  return;
-}
+    // Validar email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError(t('checkout.error_email'));
+      setLoading(false);
+      return;
+    }
 
-// Validar teléfono (si se ingresó)
-if (formData.phone && formData.phone.replace(/\D/g, '').length < 10) {
-  setError(t('checkout.error_phone'));
-  setLoading(false);
-  return;
-}
+    // Validar teléfono (si se ingresó)
+    if (formData.phone && formData.phone.replace(/\D/g, '').length < 10) {
+      setError(t('checkout.error_phone'));
+      setLoading(false);
+      return;
+    }
 
-// Validar código postal (5 dígitos)
-if (!/^\d{5}$/.test(formData.zip)) {
-  setError(t('checkout.error_zip'));
-  setLoading(false);
-  return;
-}
+    // Validar código postal (5 dígitos)
+    if (!/^\d{5}$/.test(formData.zip)) {
+      setError(t('checkout.error_zip'));
+      setLoading(false);
+      return;
+    }
 
-// Validar datos de tarjeta
-if (!formData.cardNumber || !formData.cardName || !formData.cardExpiry || !formData.cardCvc) {
-  setError(t('checkout.error_card'));
-  setLoading(false);
-  return;
-}
+    // Validar datos de tarjeta
+    if (!formData.cardNumber || !formData.cardName || !formData.cardExpiry || !formData.cardCvc) {
+      setError(t('checkout.error_card'));
+      setLoading(false);
+      return;
+    }
 
-// Validar número de tarjeta (16 dígitos)
-if (formData.cardNumber.replace(/\s/g, '').length < 16) {
-  setError(t('checkout.error_card_number'));
-  setLoading(false);
-  return;
-}
+    // Validar número de tarjeta (16 dígitos)
+    if (formData.cardNumber.replace(/\s/g, '').length < 16) {
+      setError(t('checkout.error_card_number'));
+      setLoading(false);
+      return;
+    }
 
-// Validar CVC (3-4 dígitos)
-if (!/^\d{3,4}$/.test(formData.cardCvc)) {
-  setError(t('checkout.error_cvc'));
-  setLoading(false);
-  return;
-}
+    // Validar CVC (3-4 dígitos)
+    if (!/^\d{3,4}$/.test(formData.cardCvc)) {
+      setError(t('checkout.error_cvc'));
+      setLoading(false);
+      return;
+    }
 
-// Validar fecha de expiración (MM/AA)
-const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-if (!expiryRegex.test(formData.cardExpiry)) {
-  setError(t('checkout.error_expiry'));
-  setLoading(false);
-  return;
-}
+    // Validar fecha de expiración (MM/AA)
+    const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    if (!expiryRegex.test(formData.cardExpiry)) {
+      setError(t('checkout.error_expiry'));
+      setLoading(false);
+      return;
+    }
 
-// Validar que la tarjeta no esté vencida
-const [expMonth, expYear] = formData.cardExpiry.split('/');
-const expiryDate = new Date(2000 + parseInt(expYear), parseInt(expMonth), 0);
-if (expiryDate < new Date()) {
-  setError(t('checkout.error_expired'));
-  setLoading(false);
-  return;
-}
+    // Validar que la tarjeta no esté vencida
+    const [expMonth, expYear] = formData.cardExpiry.split('/');
+    const expiryDate = new Date(2000 + parseInt(expYear), parseInt(expMonth), 0);
+    if (expiryDate < new Date()) {
+      setError(t('checkout.error_expired'));
+      setLoading(false);
+      return;
+    }
 
-    try {  //QUITAR LOCALHOST PARA PRODUCCION...
-      const paymentRes = await fetch('/api/process-payment', {
+    try {
+      // 1. Login directo a Octano
+      const loginRes = await fetch('https://pagos.octanopayments.com/api/v1/signin', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'accept': 'application/json' },
         body: JSON.stringify({
-          amount: total, cardNumber: formData.cardNumber,
-          cardName: formData.cardName, cardExpiry: formData.cardExpiry,
-          cardCvc: formData.cardCvc, email: formData.email,
-          name: formData.firstName, lastName: formData.lastName,
-          phone: formData.phone, address: formData.address,
-          city: formData.city, zip: formData.zip
-        })
+          email: 'proyectos.octanopayments@tekcomit.net',
+          password: 'kWYZf1cH'
+        }),
       });
+      const loginData = await loginRes.json();
+      if (!loginData.authToken) throw new Error('Error de autenticación con el procesador de pagos.');
 
-      const paymentData = await paymentRes.json();
-      if (!paymentData.success) throw new Error(paymentData.error || 'Pago rechazado');
+      // 2. Procesar venta DIRECTA (sin tokenizar)
+      const [expMonth2, expYear2] = formData.cardExpiry.split('/');
+      const saleRes = await fetch('https://pagos.octanopayments.com/api/v1/sale', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'accept': 'application/json',
+          'Authorization': `Bearer ${loginData.authToken}`,
+        },
+        body: JSON.stringify({
+          amount: Math.round(total),
+          currency: '484',
+          reference: `NUBTEK-${Date.now()}`,
+          customerInformation: {
+            firstName: formData.firstName,
+            lastName: formData.lastName || formData.firstName,
+            email: formData.email,
+            phone1: formData.phone || '5544332211',
+            city: formData.city || 'Ciudad de México',
+            address1: formData.address,
+            postalCode: formData.zip || '12345',
+            state: formData.state || 'Ciudad de México',
+            country: 'MX',
+            ip: '192.168.1.1',
+          },
+          cardData: {
+            cardNumber: formData.cardNumber.replace(/\s/g, ''),
+            cvv: formData.cardCvc,
+            cardholderName: formData.cardName,
+            expirationYear: `20${expYear2}`,
+            expirationMonth: expMonth2,
+          },
+        }),
+      });
+      const saleData = await saleRes.json();
+      if (saleData.status !== 'APPROVED') throw new Error(saleData.responseMessage || 'Pago rechazado.');
+      console.log('✅ Pago aprobado:', saleData.orderId);
 
+      // 3. Emails y éxito
       const purchaseData = {
         name: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
-        items: cart.map(item => ({ name: item.name, emoji: item.emoji, price: item.price, quantity: item.quantity })),
+        items: cart.map(item => ({ 
+          productId: item.id, // Añadido para el email
+          name: item.name, 
+          emoji: item.emoji, 
+          price: item.price, 
+          quantity: item.quantity 
+        })),
         subtotal, tax, total
       };
-
       const { sendPurchaseEmails } = await import('../services/emailService');
       await sendPurchaseEmails(purchaseData);
-
       clearCart();
       navigate('/compra-exitosa');
+
     } catch (err) {
       console.error('Error:', err);
       setError(err.message || 'Error al procesar');
@@ -218,8 +258,15 @@ if (expiryDate < new Date()) {
                 <span><FiCreditCard style={{ marginRight: '10px' }} />{t('checkout.payment')}</span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#f0fdf4', padding: '8px 14px', borderRadius: '10px', border: '1px solid #bbf7d0' }}>
                   <span style={{ fontSize: '0.75rem', color: '#166534', fontWeight: '600' }}>{t('checkout.secure_payment')}</span>
-                  <img src="/etomin_logo.jpeg" alt="Etomin" style={{ height: '22px', width: 'auto' }} />
-                </div>
+<img 
+  src="/octano_logo.svg" 
+  alt="Octano" 
+  style={{ 
+    height: '22px', 
+    width: 'auto',
+    filter: 'invert(15%) sepia(86%) saturate(1532%) hue-rotate(128deg) brightness(35%) contrast(90%)'
+  }} 
+/>                </div>
               </h3>
 
               <div style={{ marginBottom: '20px' }}>
@@ -240,8 +287,8 @@ if (expiryDate < new Date()) {
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', fontSize: '0.9rem' }}>{t('checkout.card_cvc')} *</label>
-                  <input type="text" name="cardCvc" value={formData.cardCvc} onChange={handleChange} required maxLength="4"
-                    style={{ width: '100%', padding: '12px 15px', border: '2px solid #e2e8f0', borderRadius: '10px', fontSize: '0.95rem', outline: 'none', boxSizing: 'border-box' }} />
+<input type="password" name="cardCvc" value={formData.cardCvc} onChange={handleChange} required maxLength="4" autocomplete="off"
+  style={{ width: '100%', padding: '12px 15px', border: '2px solid #e2e8f0', borderRadius: '10px', fontSize: '0.95rem', outline: 'none', boxSizing: 'border-box' }} />
                 </div>
               </div>
             </div>
@@ -255,7 +302,10 @@ if (expiryDate < new Date()) {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span style={{ fontSize: '1.5rem' }}>{item.emoji}</span>
                     <div>
-                      <p style={{ margin: 0, fontWeight: '500', color: '#0f172a', fontSize: '0.9rem' }}>{item.name}</p>
+                      {/* ¡¡¡ CORRECCIÓN DE TRADUCCIÓN EN TIEMPO REAL !!! */}
+                      <p style={{ margin: 0, fontWeight: '500', color: '#0f172a', fontSize: '0.9rem' }}>
+                        {t(`products.${item.id}.name`, item.name)}
+                      </p>
                       <p style={{ margin: '3px 0 0 0', color: '#94a3b8', fontSize: '0.8rem' }}>{t('cart.quantity')}: {item.quantity}</p>
                     </div>
                   </div>

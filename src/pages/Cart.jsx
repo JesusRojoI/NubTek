@@ -100,7 +100,10 @@ const Cart = () => {
               }}>
                 <span style={{ fontSize: '2rem' }}>{item.emoji}</span>
                 <div>
-                  <h4 style={{ margin: '0 0 5px 0', color: '#0f172a', fontSize: '1rem' }}>{item.name}</h4>
+                  {/* ¡¡¡ CORRECCIÓN DE TRADUCCIÓN APLICADA AQUÍ !!! */}
+                  <h4 style={{ margin: '0 0 5px 0', color: '#0f172a', fontSize: '1rem' }}>
+                    {t(`products.${item.id}.name`, item.name)}
+                  </h4>
                   {item.type === 'plan' && (
                     <span style={{
                       display: 'inline-block', padding: '3px 10px',
